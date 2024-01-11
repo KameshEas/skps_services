@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="skps_services.Views.AboutUs"
+             Title="About Us">
+    <VerticalStackLayout>
+        <ScrollView>
+            <VerticalStackLayout Margin="14,2" Padding="10,8">
+                <Label 
+            Text="Sri Kanniga Parameshwari 
+            Stores &amp; Services"
+            HorizontalTextAlignment="Center"
+            VerticalTextAlignment="Center"
+            FontSize="21"
+            FontAttributes="Bold"
+            Padding="10,20"/>
+                <Image Source="shop.Jpeg"/>
+                <Label 
+            Text="We are a well-established furniture and home appliance store in Thirukazhukundram since 1980. We offer a wide range of brand new furniture, home appliances, and utensils for marriages, festivals, and events."
+            VerticalOptions="Center" 
+            HorizontalOptions="Center"
+            LineBreakMode="WordWrap"
+            Padding="5,16" />
+                <Label Text="Services We Offer:" FontAttributes="Bold" Padding="0,0,0,6"/>
+                <StackLayout Spacing="12" Padding="16,0,6,0">
+                    <Label Text="• Washing Machine" />
+                    <Label Text="• Air Conditioner" />
+                    <Label Text="• Mixie / Grinder" />
+                    <Label Text="• Fridge" />
+                    <Label Text="• Tv" />
+                </StackLayout>
+            </VerticalStackLayout>
+        </ScrollView>
+    </VerticalStackLayout>
+</ContentPage>

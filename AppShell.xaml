@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="skps_services.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:skps_services"
+    xmlns:views="clr-namespace:skps_services.Views"
+    Shell.FlyoutBehavior="Disabled"
+    Title="skps_services">
+
+    <FlyoutItem Title="Home" FlyoutDisplayOptions="AsMultipleItems">
+        <ShellContent Icon="home.png" Title="Home" ContentTemplate="{DataTemplate views:HomeView}"/>
+        <ShellContent Icon="services.png" Title="Services" ContentTemplate="{DataTemplate views:ServicesView}"/>
+        <ShellContent Icon="about_us.png" Title="About Us" ContentTemplate="{DataTemplate views:AboutUs}"/>
+    </FlyoutItem>
+
+</Shell>
