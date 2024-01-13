@@ -4,84 +4,44 @@
              x:Class="skps_services.Views.LoginView"
              xmlns:handless="clr-namespace:skps_services.Handlers"
              Title="LoginView">
-    <VerticalStackLayout>
+    <VerticalStackLayout Padding="20,30">
         <Grid RowDefinitions="1*,8*,1*">
-            <Frame BackgroundColor="#cfd0d8" Grid.Row="0" HorizontalOptions="EndAndExpand"
-               Padding="0" 
-               Margin="0,-80,-80,0"
-               HeightRequest="250"
-               WidthRequest="250" CornerRadius="125">
 
-            </Frame>
-
-            <Frame BackgroundColor="{x:StaticResource Green}" Grid.Row="0" HorizontalOptions="EndAndExpand"
-               Padding="0" 
-               Margin="0,-120,-120,0"
-               HeightRequest="250"
-               WidthRequest="250" CornerRadius="125">
-
-            </Frame>
-
-            <Frame CornerRadius="0" BackgroundColor="{x:StaticResource DashboardBackground}"
+            <Border Stroke="Transparent"
                Grid.Row="1" VerticalOptions="CenterAndExpand"
                Margin="0,0,40,0"
                >
                 <VerticalStackLayout Spacing="25">
-                    <Label Text="SIGN IN" FontSize="28" FontAttributes="Bold" />
+                    <!--<Label Text="SIGN IN" FontSize="28" FontAttributes="Bold" />-->
+                    <Image Source="login.svg"/>
+
 
                     <Frame Padding="10" BorderColor="Transparent" CornerRadius="0">
-                        <Grid ColumnDefinitions="25,*" ColumnSpacing="10">
+                        <Grid ColumnDefinitions="Auto,*" ColumnSpacing="0">
                             <Image VerticalOptions="Center" Source="email.png" HeightRequest="25" WidthRequest="25" />
-                            <handless:BorderlessEntry VerticalOptions="Center" Placeholder="Email" Grid.Column="1" />
+                            <handless:BorderlessEntry VerticalOptions="Center" Placeholder="Email" Grid.Column="1" PlaceholderColor="{x:StaticResource PrimaryDarkText}" />
                         </Grid>
                     </Frame>
 
                     <Frame Padding="10" BorderColor="Transparent" CornerRadius="0">
-                        <Grid ColumnDefinitions="25,*" ColumnSpacing="10">
+                        <Grid ColumnDefinitions="Auto,*" ColumnSpacing="0">
                             <Image VerticalOptions="Center" Source="password.png" HeightRequest="25" WidthRequest="25" />
-                            <handless:BorderlessEntry VerticalOptions="Center" Placeholder="Password" IsPassword="True" Grid.Column="1" />
+                            <handless:BorderlessEntry VerticalOptions="Center" Placeholder="Password" IsPassword="True" Grid.Column="1" PlaceholderColor="{x:StaticResource PrimaryDarkText}" />
                         </Grid>
                     </Frame>
 
-                    <Button CornerRadius="0" HeightRequest="60" Text="SIGN IN" FontSize="20" FontAttributes="Bold" />
+                    <Button CornerRadius="0" HeightRequest="60" Text="Sign In" FontSize="20" FontAttributes="Bold" WidthRequest="300"/>
                     <!--Lest create borderless entry -->
-                    <Label FontAttributes="Bold" Text="Forgot Password?" TextColor="Gray" HorizontalTextAlignment="Center" />
-                    <HorizontalStackLayout HorizontalOptions="Center" Spacing="10">
-                        <Label  FontAttributes="Bold" TextColor="Gray" Text="Don't have account?" VerticalTextAlignment="Center" />
-                        <Button BackgroundColor="Transparent" Text="SIGN UP" FontSize="18" 
-                           FontAttributes="Bold"
-                           TextColor="{x:StaticResource Green}"/>
-                        <!--<Label  Text="SIGN UP" FontSize="18" 
-                           FontAttributes="Bold"
-                           TextColor="{x:StaticResource Green}" />
-                        <Label.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_For_SignUP" />
-                        </Label.GestureRecognizers>-->
+                    <Button FontAttributes="Bold" Text="Forgot Password?" TextColor="{x:StaticResource PrimaryDarkText}" BackgroundColor="Transparent" />
+                    <HorizontalStackLayout HorizontalOptions="Center">
+                        <Label  FontAttributes="Bold" TextColor="{x:StaticResource Gray300}" Text="Don't have account?" VerticalTextAlignment="Center" />
+                        <Button  Text="Sign Up"
+                           FontAttributes="Bold" BackgroundColor="Transparent" TextColor="{x:StaticResource PrimaryDarkText}" />
+
                     </HorizontalStackLayout>
                 </VerticalStackLayout>
 
-            </Frame>
-
-            <Frame BackgroundColor="#cfd0d8" Grid.Row="2" 
-               VerticalOptions="EndAndExpand"
-               HorizontalOptions="StartAndExpand"
-               Padding="0" 
-               Margin="0,0,0,-180"
-               HeightRequest="250"
-               WidthRequest="250" CornerRadius="125">
-
-            </Frame>
-
-            <Frame BackgroundColor="{x:StaticResource Green}" 
-               VerticalOptions="EndAndExpand"
-               Grid.Row="2" 
-               HorizontalOptions="StartAndExpand"
-               Padding="0" 
-               Margin="0,0,0,-200"
-               HeightRequest="250"
-               WidthRequest="250" CornerRadius="125">
-
-            </Frame>
+            </Border>
 
         </Grid>
     </VerticalStackLayout>
