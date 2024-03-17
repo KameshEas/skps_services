@@ -5,19 +5,14 @@
              Title="Services">
     <VerticalStackLayout Margin="14,2" Padding="10,8">
         <Label 
-            Text="Sri Kanniga Parameshwari 
-            Stores &amp; Services"
-            HorizontalTextAlignment="Center"
+            Text="Book Your Service"
+            HorizontalTextAlignment="Start"
             VerticalTextAlignment="Center"
             FontSize="21"
             FontAttributes="Bold"
             Padding="10,20"/>
-        <Image Source="shop.Jpeg"/>
-        <Label 
-            Text="We are a well-established furniture and home appliance store in Thirukazhukundram since 1980. We offer a wide range of brand new furniture, home appliances, and utensils for marriages, festivals, and events."
-            VerticalOptions="Center" 
-            HorizontalOptions="Center"
-            LineBreakMode="WordWrap"
-            Padding="5,16" />
+        <Frame>
+            
+        </Frame>
     </VerticalStackLayout>
 </ContentPage>

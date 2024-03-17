@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             x:Class="skps_services.Views.ProfileView"
+             BackgroundColor="{x:StaticResource FlashWhite}">
+    
+    <Grid RowDefinitions="Auto,Auto,Auto,*">
+        <Image Source="backarrow.png" HorizontalOptions="Start" HeightRequest="20" WidthRequest="20" Margin="14,15,0,0">
+            <Image.Behaviors>
+                <toolkit:IconTintColorBehavior x:Name="PrimaryColor" TintColor="{x:StaticResource Primary}" />
+            </Image.Behaviors>
+        </Image>
+        <Label Grid.Row="0" Text="Profile" FontSize="22" HorizontalOptions="Center" TextColor="{x:StaticResource Primary}" Padding="0,15,0,0" FontAttributes="Bold"/>
+        <Label Grid.Row="1" Text="Sri Kannigaparameshwari Services" CharacterSpacing="1" LineHeight="1.2" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" TextColor="{x:StaticResource Primary}" FontSize="32" FontAttributes="Bold" Padding="10,20,0,30"/>
+        <Grid Grid.Row="2" Padding="15" RowDefinitions="Auto,Auto,Auto" RowSpacing="20">
+            <Grid Grid.Row="0" RowDefinitions="*,*,*" RowSpacing="20">
+                <Label Grid.Row="0" Text="User Menu" FontSize="22" HorizontalOptions="Start" Padding="0,15,0,0" FontAttributes="Bold" TextColor="{x:StaticResource Primary}" />
+                <Grid Grid.Row="1" ColumnDefinitions="*,*" ColumnSpacing="30" Padding="15,0">
+                    <Frame Grid.Column="0" BackgroundColor="{x:StaticResource Primary}" BorderColor="Transparent" HasShadow="True">
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="AboutUs_Tapped" />
+                        </Frame.GestureRecognizers>
+                        <Grid RowDefinitions="*,*" RowSpacing="5">
+                            <Label Grid.Row="1" Text="About Us" FontSize="20" HorizontalOptions="Center" TextColor="{x:StaticResource FlashWhite}"/>
+                            <Image Grid.Row="0" Source="about.png" HeightRequest="30" WidthRequest="30" HorizontalOptions="Center">
+                                <Image.Behaviors>
+                                    <toolkit:IconTintColorBehavior TintColor="{x:StaticResource FlashWhite}" />
+                                </Image.Behaviors>
+                            </Image>
+                        </Grid>
+                    </Frame>
+                    <Frame Grid.Column="1" BackgroundColor="{x:StaticResource Primary}" BorderColor="Transparent" HasShadow="True">
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="Services_Tapped" />
+                        </Frame.GestureRecognizers>
+                        <Grid RowDefinitions="*,*" RowSpacing="5">
+                            <Label Grid.Row="1" Text="Services" FontSize="20" HorizontalOptions="Center" TextColor="{x:StaticResource FlashWhite}"/>
+                            <Image Grid.Row="0" Source="about.png" HeightRequest="30" WidthRequest="30" HorizontalOptions="Center">
+                                <Image.Behaviors>
+                                    <toolkit:IconTintColorBehavior TintColor="{x:StaticResource FlashWhite}" />
+                                </Image.Behaviors>
+                            </Image>
+                        </Grid>
+                    </Frame>
+                </Grid>
+            </Grid>
+            
+            <Grid Grid.Row="1" RowDefinitions="*,Auto,Auto" RowSpacing="20">
+                <Label Grid.Row="0" Text="Account Settings" FontSize="22" HorizontalOptions="Start" Padding="0,15,0,0" FontAttributes="Bold" TextColor="{x:StaticResource Primary}" />
+                <Grid Grid.Row="1" ColumnDefinitions="*,*"  ColumnSpacing="30" Padding="15,0">
+                    <Frame Grid.Column="0" BackgroundColor="{x:StaticResource Primary}" BorderColor="Transparent" HasShadow="True">
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="UserDetails_Tapped" />
+                        </Frame.GestureRecognizers>
+                        <Grid RowDefinitions="*,*" RowSpacing="5">
+                            <Label Grid.Row="1" Text="User Details" FontSize="20" HorizontalOptions="Center" TextColor="{x:StaticResource FlashWhite}"/>
+                            <Image Grid.Row="0" Source="user.png" HeightRequest="30" WidthRequest="30" HorizontalOptions="Center">
+                                <Image.Behaviors>
+                                    <toolkit:IconTintColorBehavior TintColor="{x:StaticResource FlashWhite}" />
+                                </Image.Behaviors>
+                            </Image>
+                        </Grid>
+                    </Frame>
+                    <Frame Grid.Column="1" BackgroundColor="{x:StaticResource Primary}" BorderColor="Transparent" HasShadow="True" >
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="Password_Tapped" />
+                        </Frame.GestureRecognizers>
+                        <Grid RowDefinitions="*,*" RowSpacing="5">
+                            <Label Grid.Row="1" Text="Password" FontSize="20" HorizontalOptions="Center" TextColor="{x:StaticResource FlashWhite}"/>
+                            <Image Grid.Row="0" Source="password.png" HeightRequest="30" WidthRequest="30" HorizontalOptions="Center">
+                                <Image.Behaviors>
+                                    <toolkit:IconTintColorBehavior TintColor="{x:StaticResource FlashWhite}" />
+                                </Image.Behaviors>
+                            </Image>
+                        </Grid>
+                    </Frame>
+                </Grid>
+            </Grid>
+            <Grid Grid.Row="2" RowDefinitions="*,Auto,Auto" RowSpacing="20">
+                <Label Grid.Row="0" Text="Support" FontSize="22" HorizontalOptions="Start" Padding="0,15,0,0" FontAttributes="Bold" TextColor="{x:StaticResource Primary}" />
+                <Grid Grid.Row="1" ColumnDefinitions="*,*" ColumnSpacing="30" Padding="15,0">
+                    <Frame Grid.Column="0" BackgroundColor="{x:StaticResource Primary}" BorderColor="Transparent" HasShadow="True">
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="ContactUs_Tapped" />
+                        </Frame.GestureRecognizers>
+                        <Grid RowDefinitions="*,*" RowSpacing="5">
+                            <Label Grid.Row="1" Text="Contact Us" FontSize="20" HorizontalOptions="Center" TextColor="{x:StaticResource FlashWhite}"/>
+                            <Image Grid.Row="0" Source="chat.png" HeightRequest="30" WidthRequest="30" HorizontalOptions="Center">
+                                <Image.Behaviors>
+                                    <toolkit:IconTintColorBehavior TintColor="{x:StaticResource FlashWhite}" />
+                                </Image.Behaviors>
+                            </Image>
+                        </Grid>
+                    </Frame>
+                </Grid>
+            </Grid>
+        </Grid>
+        <Button Grid.Row="3" Margin="15" Text="Log Out" TextColor="{x:StaticResource FlashWhite}" VerticalOptions="EndAndExpand" FontAttributes="Bold" FontSize="20" HeightRequest="60" CornerRadius="10" ImageSource="logout.png" />
+    </Grid>
+</ContentPage>

@@ -2,98 +2,61 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="skps_services.Views.SignUpView"
-             xmlns:handless="clr-namespace:skps_services.Handlers"
+             NavigationPage.HasBackButton="False"
              Title="SignUpView">
-    <!--<VerticalStackLayout>-->
-        <Grid RowDefinitions="1*,8*,1*">
-            <Frame BackgroundColor="#cfd0d8" Grid.Row="0" HorizontalOptions="EndAndExpand"
-               Padding="0" 
-               Margin="0,-80,-80,0"
-               HeightRequest="250"
-               WidthRequest="250" CornerRadius="125">
 
-            </Frame>
+    <ScrollView>
+        <Grid BackgroundColor="{x:StaticResource White}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="8*"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
 
-            <Frame BackgroundColor="{x:StaticResource Green}" Grid.Row="0" HorizontalOptions="EndAndExpand"
-               Padding="0" 
-               Margin="0,-120,-120,0"
-               HeightRequest="250"
-               WidthRequest="250" CornerRadius="125">
+            <Label Text="Sri Kannigaparameshwari Services" Margin="20,30" FontSize="24" HorizontalTextAlignment="Center" FontAttributes="Bold" TextColor="{x:StaticResource PrimaryDarkText}" />
 
-            </Frame>
+            <Border Grid.Row="1" Stroke="Transparent" VerticalOptions="CenterAndExpand" Margin="30,6">
+                <VerticalStackLayout Spacing="10">
+                    <Image Source="sign_up.svg" WidthRequest="280"/>
 
-            <Frame ZIndex="1" CornerRadius="0" BackgroundColor="{x:StaticResource DashboardBackground}"
-               Grid.Row="1" VerticalOptions="CenterAndExpand"
-               Margin="0,0,40,0"
-               >
-                <ScrollView>
-                    <VerticalStackLayout Spacing="25">
-                        <Label Text="SIGN UP" FontSize="28" FontAttributes="Bold" />
+                    <Frame Padding="10" BorderColor="Transparent" CornerRadius="0">
+                        <Grid ColumnDefinitions="Auto,*" ColumnSpacing="10">
+                            <Image VerticalOptions="Center" Source="user.png" HeightRequest="25" WidthRequest="25" />
+                            <Entry VerticalOptions="Center" Text="{Binding Name}" Placeholder="Name" Grid.Column="1"  PlaceholderColor="{x:StaticResource PrimaryDarkText}"/>
+                        </Grid>
+                    </Frame>
 
-                        <Frame Padding="10" BorderColor="Transparent" CornerRadius="0">
-                            <Grid ColumnDefinitions="25,*" ColumnSpacing="10">
-                                <Image VerticalOptions="Center" Source="user.png" HeightRequest="25" WidthRequest="25" />
-                                <handless:BorderlessEntry VerticalOptions="Center" Placeholder="Name" Grid.Column="1" />
-                            </Grid>
-                        </Frame>
+                    <Frame Padding="10" BorderColor="Transparent" CornerRadius="0">
+                        <Grid ColumnDefinitions="Auto,*" ColumnSpacing="10">
+                            <Image VerticalOptions="Center" Source="email.png" HeightRequest="25" WidthRequest="25" />
+                            <Entry VerticalOptions="Center" Text="{Binding Email}" Keyboard="Email" Placeholder="Email" Grid.Column="1"  PlaceholderColor="{x:StaticResource PrimaryDarkText}"  x:Name="EmailEntryField" />
 
-                        <Frame Padding="10" BorderColor="Transparent" CornerRadius="0">
-                            <Grid ColumnDefinitions="25,*" ColumnSpacing="10">
-                                <Image VerticalOptions="Center" Source="email.png" HeightRequest="25" WidthRequest="25" />
-                                <handless:BorderlessEntry VerticalOptions="Center" Placeholder="Email" Grid.Column="1" />
-                            </Grid>
-                        </Frame>
+                        </Grid>
+                    </Frame>
 
-                        <Frame Padding="10" BorderColor="Transparent" CornerRadius="0">
-                            <Grid ColumnDefinitions="25,*" ColumnSpacing="10">
-                                <Image VerticalOptions="Center" Source="mobile.png" HeightRequest="25" WidthRequest="25" />
-                                <handless:BorderlessEntry VerticalOptions="Center" Placeholder="Mobile Number" Grid.Column="1" />
-                            </Grid>
-                        </Frame>
+                    <Frame Padding="10" BorderColor="Transparent" CornerRadius="0">
+                        <Grid ColumnDefinitions="Auto,*" ColumnSpacing="10">
+                            <Image VerticalOptions="Center" Source="mobile.png" HeightRequest="25" WidthRequest="25" />
+                            <Entry VerticalOptions="Center"  Text="{Binding MobileNumber}" Keyboard="Numeric" Placeholder="Mobile Number" Grid.Column="1"  PlaceholderColor="{x:StaticResource PrimaryDarkText}"/>
+                        </Grid>
+                    </Frame>
 
-                        <Frame Padding="10" BorderColor="Transparent" CornerRadius="0">
-                            <Grid ColumnDefinitions="25,*" ColumnSpacing="10">
-                                <Image VerticalOptions="Center" Source="password.png" HeightRequest="25" WidthRequest="25" />
-                                <handless:BorderlessEntry VerticalOptions="Center" Placeholder="Password" IsPassword="True" Grid.Column="1" />
-                            </Grid>
-                        </Frame>
+                    <Frame Padding="10" BorderColor="Transparent" CornerRadius="0">
+                        <Grid ColumnDefinitions="Auto,*" ColumnSpacing="10">
+                            <Image VerticalOptions="Center" Source="password.png" HeightRequest="25" WidthRequest="25" />
+                            <Entry VerticalOptions="Center" Text="{Binding Password}" Placeholder="Password" IsPassword="True" Grid.Column="1"  PlaceholderColor="{x:StaticResource PrimaryDarkText}"/>
+                        </Grid>
+                    </Frame>
 
-                        <Button CornerRadius="0" HeightRequest="60" Text="SIGN UP" FontSize="20" FontAttributes="Bold" />
 
-                        <HorizontalStackLayout Spacing="10">
-                            <Label  FontAttributes="Bold" TextColor="Gray" Text="already have a account?" VerticalTextAlignment="Center" />
-                            <Label  Text="SIGN IN" FontSize="18" 
-                           FontAttributes="Bold"
-                           TextColor="{x:StaticResource Green}" />
-                            <HorizontalStackLayout.GestureRecognizers>
-                                <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_For_SignIn" />
-                            </HorizontalStackLayout.GestureRecognizers>
-                        </HorizontalStackLayout>
-                    </VerticalStackLayout>
-                </ScrollView>
-            </Frame>
+                    <Button CornerRadius="0" HeightRequest="60" Command="{Binding SignUp}" Text="Sign Up" FontSize="20" FontAttributes="Bold" WidthRequest="300"/>
 
-            <Frame BackgroundColor="#cfd0d8" Grid.Row="2" 
-               VerticalOptions="EndAndExpand"
-               HorizontalOptions="StartAndExpand"
-               Padding="0" 
-               Margin="0,0,0,-180"
-               HeightRequest="250"
-               WidthRequest="250" CornerRadius="125">
-
-            </Frame>
-
-            <Frame BackgroundColor="{x:StaticResource Green}" 
-               VerticalOptions="EndAndExpand"
-               Grid.Row="2" 
-               HorizontalOptions="StartAndExpand"
-               Padding="0" 
-               Margin="0,0,0,-200"
-               HeightRequest="250"
-               WidthRequest="250" CornerRadius="125">
-
-            </Frame>
-
+                    <HorizontalStackLayout HorizontalOptions="Center">
+                        <Label FontAttributes="Bold" TextColor="{x:StaticResource Gray300}" Text="Already have an account?" VerticalTextAlignment="Center" />
+                        <Button Text="Sign In" FontSize="18" Clicked="Sign_In_Clicked" BackgroundColor="Transparent" FontAttributes="Bold" TextColor="{x:StaticResource PrimaryDarkText}" />
+                    </HorizontalStackLayout>
+                </VerticalStackLayout>
+            </Border>
         </Grid>
-    <!--</VerticalStackLayout>-->
+    </ScrollView>
 </ContentPage>

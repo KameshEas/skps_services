@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="skps_services.Views.ContactUsView"
+             NavigationPage.HasBackButton="True"
+             xmlns:local="clr-namespace:skps_services.ViewModels" 
+             xmlns:maps="http://schemas.microsoft.com/dotnet/2021/maui/maps"
+             xmlns:sensors="clr-namespace:Microsoft.Maui.Devices.Sensors;assembly=Microsoft.Maui.Essentials"
+             BackgroundColor="{x:StaticResource FlashWhite}">
+
+    <ContentPage.BindingContext>
+        <local:ContactViewModel />
+    </ContentPage.BindingContext>
+
+    <Grid RowDefinitions="Auto,*,Auto">
+        <Image Source="backarrow.png" HorizontalOptions="Start" HeightRequest="20" WidthRequest="20" Margin="14,15,0,0" />
+        <Label Grid.Row="0" Text="Contact Us" FontSize="22" HorizontalOptions="Center" Padding="0,15,0,0" FontAttributes="Bold"/>
+        <StackLayout Grid.Row="1" Padding="25" Spacing="10">
+            <Image Source="contact_us.svg" HeightRequest="300" />
+            <CollectionView ItemsSource="{Binding ContactOptions}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid RowDefinitions="*,*" ColumnDefinitions="*,*" RowSpacing="20">
+                            <Image Source="{Binding Icon}" Grid.Row="0"  Grid.Column="1" VerticalOptions="Center" Grid.ColumnSpan="2" WidthRequest="20" HeightRequest="20" HorizontalOptions="End">
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding TapCommand}"/>
+                                </Image.GestureRecognizers>
+                            </Image>
+                            <StackLayout Orientation="Vertical" Grid.Column="0" HorizontalOptions="StartAndExpand" Spacing="4">
+                                <Label Text="{Binding Title}" FontAttributes="Bold" FontSize="18" TextColor="{x:StaticResource PrimaryDarkText}" />
+                                <Label Text="{Binding Detail}" FontSize="16" TextColor="{x:StaticResource SecondaryDarkText}" />
+                            </StackLayout>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </StackLayout>
+        <Grid Grid.Row="2" Padding="25,10,25,30" HeightRequest="280" WidthRequest="450">
+            <maps:Map x:Name="map">
+                <x:Arguments>
+                    <maps:MapSpan>
+                        <x:Arguments>
+                            <sensors:Location>
+                                <x:Arguments>
+                                    <x:Double>12.60471248626709</x:Double>
+                                    <x:Double>80.05631256103516</x:Double>
+                                </x:Arguments>
+                            </sensors:Location>
+                            <x:Double>0.01</x:Double>
+                            <x:Double>0.01</x:Double>
+                        </x:Arguments>
+                    </maps:MapSpan>
+                </x:Arguments>
+                <maps:Map.Pins>
+                    <maps:Pin Label="Sri Kannigaparameswari Sales and Services"
+                      Address="Sannathi St, Tirukazhukundram, Chengalpattu - 603109"
+                      Type="Place">
+                        <maps:Pin.Location>
+                            <sensors:Location>
+                                <x:Arguments>
+                                    <x:Double>12.60471248626709</x:Double>
+                                    <x:Double>80.05631256103516</x:Double>
+                                </x:Arguments>
+                            </sensors:Location>
+                        </maps:Pin.Location>
+                    </maps:Pin>
+                </maps:Map.Pins>
+            </maps:Map>
+        </Grid>
+    </Grid>
+</ContentPage>

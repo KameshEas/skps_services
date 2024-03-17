@@ -6,4 +6,15 @@ public partial class HomeView : ContentPage
 	{
 		InitializeComponent();
 	}
+    protected override bool OnBackButtonPressed()
+    {
+        return false;
+    }
+
+    private async void BookServices_Tapped(object sender, TappedEventArgs e)
+    {
+        await Navigation.PushModalAsync(new ServicesView());
+
+
+    }
 }

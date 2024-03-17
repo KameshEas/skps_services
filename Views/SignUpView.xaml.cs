@@ -1,13 +1,24 @@
+using skps_services.ViewModels;
+
 namespace skps_services.Views;
 
 public partial class SignUpView : ContentPage
 {
-	public SignUpView()
+
+    public SignUpView()
 	{
 		InitializeComponent();
-	}
-    private async void TapGestureRecognizer_Tapped_For_SignIn(object sender, EventArgs e)
-    {
-        await Shell.Current.GoToAsync("//SignIn");
+        BindingContext = new SignUpViewModel(Navigation);
+
     }
+    protected override bool OnBackButtonPressed()
+    {
+        return false;
+    }
+
+    private async void Sign_In_Clicked(object sender, EventArgs e)
+    {
+        await Navigation.PushModalAsync(new LoginView());
+    }
+
 }
