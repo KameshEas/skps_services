@@ -18,14 +18,6 @@ namespace skps_services.ViewModels
     }
     public class ServicesViewModel
     {
-        public ICommand ShowBottomSheetCommand => new Command<Services>(async (Products) => await ShowBottomSheet(Products));
-
-        private async Task ShowBottomSheet(Services Products)
-        {
-            var booknow = new BookNowView();
-            MopupService.Instance.PushAsync(booknow);
-        }
-
         public ObservableCollection<Services> Services { get; set; }
 
         public ServicesViewModel()
