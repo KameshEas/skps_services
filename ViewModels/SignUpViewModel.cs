@@ -11,8 +11,9 @@ namespace skps_services.ViewModels
     public class SignUpViewModel : INotifyPropertyChanged
     {
         public string webApiKey = "AIzaSyC8q_AFMR9VeYAKJ0ld6CQNLPTscbdgP0s";
+        public string Uri = "https://skps-66b64-default-rtdb.firebaseio.com";
         private FirebaseClient _firebaseClient;
-        private DataService _dataService;
+        //private DataService _dataService;
         private INavigation _navigation;
         private string email;
         private string password;
@@ -66,11 +67,22 @@ namespace skps_services.ViewModels
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(v));
         }
 
+        public async Task PostDataAsync(string name, string email, string mobileNumber)
+        {
+            await _firebaseClient.Child("User").PostAsync(new User
+            {
+                Name = name,
+                Email = email,
+                MobileNumber = mobileNumber,
+            });
+        }
+
+
         public SignUpViewModel(INavigation navigation)
         {
             this._navigation = navigation;
-            _dataService = new DataService();  // Initialize the instance
-            _firebaseClient = new FirebaseClient("https://skps-66b64-default-rtdb.firebaseio.com");
+            //_dataService = new DataService();  // Initialize the instance
+            _firebaseClient = new FirebaseClient(Uri);
             SignUp = new Command(SignUpUserTappedAsync);
         }
 
@@ -82,7 +94,8 @@ namespace skps_services.ViewModels
                 var auth = await authProvider.CreateUserWithEmailAndPasswordAsync(Email, Password);
                 string token = auth.FirebaseToken;
 
-                await OnSignupFormSubmitted(Name, Email, MobileNumber);
+                await PostDataAsync(Name, Email, MobileNumber);
+                Console.WriteLine("Data written to the Firebase successfully");
 
                 await App.Current.MainPage.DisplayAlert("Alert", "User Registered successfully", "OK");
                 await this._navigation.PushModalAsync(new LoginView());
@@ -108,11 +121,6 @@ namespace skps_services.ViewModels
                 // Other non-authentication errors
                 await App.Current.MainPage.DisplayAlert("Alert", "Error: " + ex.Message, "OK");
             }
-        }
-
-        public async Task OnSignupFormSubmitted(string name, string email, string mobileNumber)
-        {
-            await _dataService.StoreUserData(name, email, mobileNumber);
         }
 
     }

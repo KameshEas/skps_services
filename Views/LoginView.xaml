@@ -24,7 +24,7 @@
                     <Frame Padding="10" BorderColor="Transparent" CornerRadius="0">
                         <Grid ColumnDefinitions="Auto,*" ColumnSpacing="10">
                             <Image VerticalOptions="Center" Source="email.png" HeightRequest="25" WidthRequest="25" />
-                            <Entry VerticalOptions="Center" Text="{Binding Email}" Placeholder="Email" Grid.Column="1"  PlaceholderColor="{x:StaticResource PrimaryDarkText}" x:Name="EmailEntryField" />
+                            <Entry VerticalOptions="Center" Text="{Binding Email}" Placeholder="Email" Grid.Column="1"  PlaceholderColor="{x:StaticResource PrimaryDarkText}"/>
                         </Grid>
                     </Frame>
 

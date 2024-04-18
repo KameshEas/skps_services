@@ -2,8 +2,7 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="skps_services.Views.SignUpView"
-             NavigationPage.HasBackButton="False"
-             Title="SignUpView">
+             NavigationPage.HasBackButton="False">
 
     <ScrollView>
         <Grid BackgroundColor="{x:StaticResource White}">
@@ -22,14 +21,14 @@
                     <Frame Padding="10" BorderColor="Transparent" CornerRadius="0">
                         <Grid ColumnDefinitions="Auto,*" ColumnSpacing="10">
                             <Image VerticalOptions="Center" Source="user.png" HeightRequest="25" WidthRequest="25" />
-                            <Entry VerticalOptions="Center" Text="{Binding Name}" Placeholder="Name" Grid.Column="1"  PlaceholderColor="{x:StaticResource PrimaryDarkText}"/>
+                            <Entry x:Name="NameEntry" VerticalOptions="Center" Text="{Binding Name}" Placeholder="Name" Grid.Column="1"  PlaceholderColor="{x:StaticResource PrimaryDarkText}"/>
                         </Grid>
                     </Frame>
 
                     <Frame Padding="10" BorderColor="Transparent" CornerRadius="0">
                         <Grid ColumnDefinitions="Auto,*" ColumnSpacing="10">
                             <Image VerticalOptions="Center" Source="email.png" HeightRequest="25" WidthRequest="25" />
-                            <Entry VerticalOptions="Center" Text="{Binding Email}" Keyboard="Email" Placeholder="Email" Grid.Column="1"  PlaceholderColor="{x:StaticResource PrimaryDarkText}"  x:Name="EmailEntryField" />
+                            <Entry x:Name="EmailEntry"  VerticalOptions="Center" Text="{Binding Email}" Keyboard="Email" Placeholder="Email" Grid.Column="1"  PlaceholderColor="{x:StaticResource PrimaryDarkText}"  />
 
                         </Grid>
                     </Frame>
@@ -37,7 +36,7 @@
                     <Frame Padding="10" BorderColor="Transparent" CornerRadius="0">
                         <Grid ColumnDefinitions="Auto,*" ColumnSpacing="10">
                             <Image VerticalOptions="Center" Source="mobile.png" HeightRequest="25" WidthRequest="25" />
-                            <Entry VerticalOptions="Center"  Text="{Binding MobileNumber}" Keyboard="Numeric" Placeholder="Mobile Number" Grid.Column="1"  PlaceholderColor="{x:StaticResource PrimaryDarkText}"/>
+                            <Entry x:Name="MobileEntry"  VerticalOptions="Center"  Text="{Binding MobileNumber}" Keyboard="Numeric" Placeholder="Mobile Number" Grid.Column="1"  PlaceholderColor="{x:StaticResource PrimaryDarkText}"/>
                         </Grid>
                     </Frame>
 

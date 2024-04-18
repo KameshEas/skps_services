@@ -1,10 +1,11 @@
+using Firebase.Database;
 using skps_services.ViewModels;
 
 namespace skps_services.Views;
 
 public partial class SignUpView : ContentPage
 {
-
+    
     public SignUpView()
 	{
 		InitializeComponent();
