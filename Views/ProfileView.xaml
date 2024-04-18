@@ -10,6 +10,9 @@
             <Image.Behaviors>
                 <toolkit:IconTintColorBehavior x:Name="PrimaryColor" TintColor="{x:StaticResource Primary}" />
             </Image.Behaviors>
+            <Image.GestureRecognizers>
+                <TapGestureRecognizer Tapped="Back_Tapped"/>
+            </Image.GestureRecognizers>
         </Image>
         <Label Grid.Row="0" Text="Profile" FontSize="22" HorizontalOptions="Center" TextColor="{x:StaticResource Primary}" Padding="0,15,0,0" FontAttributes="Bold"/>
         <Label Grid.Row="1" Text="Sri Kannigaparameshwari Services" CharacterSpacing="1" LineHeight="1.2" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" TextColor="{x:StaticResource Primary}" FontSize="32" FontAttributes="Bold" Padding="10,20,0,30"/>

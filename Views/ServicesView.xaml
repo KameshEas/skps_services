@@ -1,18 +1,46 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:skps_services.ViewModels" 
+             xmlns:mopups="clr-namespace:Mopups;assembly=Mopups"
              x:Class="skps_services.Views.ServicesView"
-             Title="Services">
-    <VerticalStackLayout Margin="14,2" Padding="10,8">
-        <Label 
-            Text="Book Your Service"
-            HorizontalTextAlignment="Start"
-            VerticalTextAlignment="Center"
-            FontSize="21"
-            FontAttributes="Bold"
-            Padding="10,20"/>
-        <Frame>
-            
-        </Frame>
-    </VerticalStackLayout>
+             Title="Services" BackgroundColor="{x:DynamicResource FlashWhite}">
+
+    <ContentPage.BindingContext>
+        <local:ServicesViewModel />
+    </ContentPage.BindingContext>
+    
+    <Grid RowDefinitions="Auto,Auto" Margin="14,2" Padding="10,8" RowSpacing="5">
+        <Grid Grid.Row="0">
+            <Image Source="backarrow.png" WidthRequest="20" HeightRequest="20" HorizontalOptions="Start">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="Back_Tapped"/>
+                </Image.GestureRecognizers>
+            </Image>
+            <Label Text="Our Services" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" FontSize="21" FontAttributes="Bold" TextColor="{x:DynamicResource Primary}" Padding="10,20"/>
+            <Frame HorizontalOptions="End" CornerRadius="10" BackgroundColor="Transparent" WidthRequest="40" HeightRequest="40" Margin="0" Padding="0">
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="Profile_tapped"/>
+                </Frame.GestureRecognizers>
+                <Image Source="shop.jpeg" Aspect="AspectFill"/>
+            </Frame>
+        </Grid>
+        <CollectionView ItemsSource="{Binding Services}" Grid.Row="1" >
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Frame Margin="1" BorderColor="Transparent" HeightRequest="140" HasShadow="True" CornerRadius="10" BackgroundColor="{x:DynamicResource Primary}">
+                        <Grid ColumnDefinitions="Auto,Auto" ColumnSpacing="25">
+                            <Frame WidthRequest="100" Grid.Column="0" HeightRequest="90" Margin="0" Padding="0" HorizontalOptions="Start">
+                                <Image Source="{Binding ImgSrc}" Aspect="AspectFill"/>
+                            </Frame>
+                            <Grid Grid.Column="1" RowDefinitions="Auto,Auto" HorizontalOptions="Start" RowSpacing="20">
+                                <Label Grid.Row="0" Text="{Binding Products}" FontAttributes="Bold" FontSize="20"  TextColor="{x:DynamicResource FlashWhite}"/>
+                                <Button Grid.Row="1" VerticalOptions="Start" Text="Book Now"  BackgroundColor="{x:DynamicResource FlashWhite}" Clicked="BookNow_Clicked" FontAttributes="Bold" FontSize="14" TextColor="{x:DynamicResource Primary}" WidthRequest="100" HeightRequest="40" />
+                            </Grid>
+                        </Grid>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
 </ContentPage>

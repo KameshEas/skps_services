@@ -11,10 +11,14 @@ public partial class HomeView : ContentPage
         return false;
     }
 
-    private async void BookServices_Tapped(object sender, TappedEventArgs e)
+    private async void BookService_Clicked(object sender, EventArgs e)
     {
         await Navigation.PushModalAsync(new ServicesView());
 
+    }
+    private async void Profile_tapped(object sender, TappedEventArgs e)
+    {
+        await Navigation.PushModalAsync(new ProfileView());
 
     }
 }

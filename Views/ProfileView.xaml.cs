@@ -37,4 +37,10 @@ public partial class ProfileView : ContentPage
         await Navigation.PushModalAsync(new ServicesView());
 
     }
+
+    private async void Back_Tapped(object sender, TappedEventArgs e)
+    {
+        await Navigation.PopModalAsync();
+
+    }
 }

@@ -2,22 +2,39 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="skps_services.Views.HomeView"
-             Title="Home">
-    <VerticalStackLayout Margin="14,2" Padding="10,8">
-        <Label 
-            Text="Sri Kanniga Parameshwari 
-            Stores &amp; Services"
-            HorizontalTextAlignment="Center"
-            VerticalTextAlignment="Center"
-            FontSize="21"
-            FontAttributes="Bold"
-            Padding="10,20"/>
-        <Image Source="shop.Jpeg"/>
-        <Label 
-            Text="We are a well-established furniture and home appliance store in Thirukazhukundram since 1980. We offer a wide range of brand new furniture, home appliances, and utensils for marriages, festivals, and events."
-            VerticalOptions="Center" 
-            HorizontalOptions="Center"
-            LineBreakMode="WordWrap"
-            Padding="5,16" />
-    </VerticalStackLayout>
+             Title="Home" BackgroundColor="{x:DynamicResource Primary}">
+    <Grid RowDefinitions="Auto,*,*">
+        <Grid Grid.Row="0" >
+            <Label Text="Sri Kanniga Parameshwari Services" Margin="20,0,0,10" HorizontalTextAlignment="Start" VerticalTextAlignment="Center" FontSize="21" FontAttributes="Bold" TextColor="{x:DynamicResource FlashWhite}" Padding="10,20"/>
+            <Frame HorizontalOptions="End" CornerRadius="10" BackgroundColor="Transparent" WidthRequest="40" VerticalOptions="Center" HeightRequest="40" Margin="20,0,10,20" Padding="0">
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="Profile_tapped"/>
+                </Frame.GestureRecognizers>
+                <Image Source="shop.jpeg" Aspect="AspectFill"/>
+            </Frame>
+        </Grid>
+        <Frame Grid.Row="1" HorizontalOptions="FillAndExpand" HeightRequest="450" Margin="0" Padding="0" CornerRadius="0" BorderColor="Transparent" BackgroundColor="Black" >
+            <Grid>
+                <Image Source="shop.Jpeg" Aspect="AspectFill" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Opacity="0.6"/>
+                <!--<Label 
+                Text="Sri Kanniga Parameshwari Services"
+                HorizontalTextAlignment="Center"
+                VerticalTextAlignment="End"
+                FontSize="21"
+                TextColor="{x:DynamicResource FlashWhite}"
+                FontAttributes="Bold"
+                Padding="10,20"/>-->
+            </Grid>
+        </Frame>
+        <Frame Grid.Row="2" BackgroundColor="{x:DynamicResource Primary}" BorderColor="Transparent" CornerRadius="0" Margin="0" Padding="0">
+            <Grid Padding="20,0" RowDefinitions="*,*">
+                <Label Grid.Row="0" 
+                Text="We are a well-established furniture and home appliance store in Thirukazhukundram since 1980. We offer a wide range of brand new furniture, home appliances, and utensils for marriages, festivals, and events."
+                VerticalOptions="Center" 
+                HorizontalOptions="Center" FontSize="20" CharacterSpacing="2" LineHeight="1"
+                LineBreakMode="WordWrap" TextColor="{x:DynamicResource FlashWhite}" />
+                <Button Grid.Row="1" VerticalOptions="End" Margin="0,45" BackgroundColor="White" Text="Book Your Service Now" FontAttributes="Bold" FontSize="14" TextColor="{x:DynamicResource PrimaryDarkText}" WidthRequest="200" HeightRequest="50" Clicked="BookService_Clicked" />
+            </Grid>
+        </Frame>
+    </Grid>
 </ContentPage>
