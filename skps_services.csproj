@@ -22,16 +22,26 @@
 
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">21.0</SupportedOSPlatformVersion>
 
+		<AndroidSigningKeyStore>skpsservices.keystore</AndroidSigningKeyStore>
+
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net8.0-android|AnyCPU'">
 	  <AndroidPackageFormat>apk</AndroidPackageFormat>
 	  <AndroidLinkTool>r8</AndroidLinkTool>
 	  <Debugger>Xamarin</Debugger>
+	  <AndroidKeyStore>False</AndroidKeyStore>
+	  <AndroidSigningStorePass>skpsservices</AndroidSigningStorePass>
+	  <AndroidSigningKeyAlias>skpsservices</AndroidSigningKeyAlias>
+	  <AndroidSigningKeyPass>skpsservices</AndroidSigningKeyPass>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net8.0-android|AnyCPU'">
 	  <Debugger>Xamarin</Debugger>
+	  <AndroidKeyStore>False</AndroidKeyStore>
+	  <AndroidSigningStorePass>skpsservices</AndroidSigningStorePass>
+	  <AndroidSigningKeyAlias>skpsservices</AndroidSigningKeyAlias>
+	  <AndroidSigningKeyPass>skpsservices</AndroidSigningKeyPass>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -90,18 +100,12 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Compile Update="Views\AboutUsView.xaml.cs">
-	    <DependentUpon>AboutUsView.xaml</DependentUpon>
-	  </Compile>
 	  <Compile Update="Views\ContactUsView.xaml.cs">
 	    <DependentUpon>ContactUsView.xaml</DependentUpon>
 	  </Compile>
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiXaml Update="Views\AboutUsView.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
 	  <MauiXaml Update="Views\BookNowView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

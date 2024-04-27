@@ -8,7 +8,7 @@ using System.ComponentModel;
 
 namespace skps_services.ViewModels
 {
-    internal class LoginViewModel : INotifyPropertyChanged
+    public class LoginViewModel : INotifyPropertyChanged
     {
         public string webApiKey = "AIzaSyC8q_AFMR9VeYAKJ0ld6CQNLPTscbdgP0s";
         private INavigation _navigation;

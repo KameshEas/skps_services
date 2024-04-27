@@ -27,13 +27,21 @@
             </Grid>
         </Frame>
         <Frame Grid.Row="2" BackgroundColor="{x:DynamicResource Primary}" BorderColor="Transparent" CornerRadius="0" Margin="0" Padding="0">
-            <Grid Padding="20,0" RowDefinitions="*,*">
+            <Grid Padding="20,0" RowDefinitions="*,*,*">
                 <Label Grid.Row="0" 
                 Text="We are a well-established furniture and home appliance store in Thirukazhukundram since 1980. We offer a wide range of brand new furniture, home appliances, and utensils for marriages, festivals, and events."
                 VerticalOptions="Center" 
                 HorizontalOptions="Center" FontSize="20" CharacterSpacing="2" LineHeight="1"
                 LineBreakMode="WordWrap" TextColor="{x:DynamicResource FlashWhite}" />
-                <Button Grid.Row="1" VerticalOptions="End" Margin="0,45" BackgroundColor="White" Text="Book Your Service Now" FontAttributes="Bold" FontSize="14" TextColor="{x:DynamicResource PrimaryDarkText}" WidthRequest="200" HeightRequest="50" Clicked="BookService_Clicked" />
+                <Label Grid.Row="1" Text="Services We Offer:" FontAttributes="Bold" TextColor="{x:DynamicResource FlashWhite}" Padding="0,0,0,6"/>
+                <StackLayout Grid.Row="1" Spacing="12" Padding="16,0,6,0">
+                    <Label Text="• Washing Machine" TextColor="{x:DynamicResource FlashWhite}" />
+                    <Label Text="• Air Conditioner" TextColor="{x:DynamicResource FlashWhite}" />
+                    <Label Text="• Mixie / Grinder" TextColor="{x:DynamicResource FlashWhite}" />
+                    <Label Text="• Fridge" TextColor="{x:DynamicResource FlashWhite}" />
+                    <Label Text="• Tv" TextColor="{x:DynamicResource FlashWhite}" />
+                </StackLayout>
+                <Button Grid.Row="2" VerticalOptions="End" Margin="0,45" BackgroundColor="White" Text="Book Your Service Now" FontAttributes="Bold" FontSize="14" TextColor="{x:DynamicResource PrimaryDarkText}" WidthRequest="200" HeightRequest="50" Clicked="BookService_Clicked" />
             </Grid>
         </Frame>
     </Grid>

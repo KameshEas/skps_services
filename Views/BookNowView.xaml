@@ -1,27 +1,48 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:mopups="clr-namespace:Mopups.Pages;assembly=Mopups"
-             x:Class="skps_services.Views.BookNowView">
+             x:Class="skps_services.Views.BookNowView"
+             BackgroundColor="{x:DynamicResource FlashWhite}">
 
-  <StackLayout Margin="30">
-    <Entry Placeholder="Name" />
-    <Entry Placeholder="Phone Number" Keyboard="Telephone" />
-    <Entry Placeholder="Address" />
-    <Entry Placeholder="City" />
-    <Entry Placeholder="State" />
-    <Entry Placeholder="Pincode" Keyboard="Numeric" />
-    <Picker Title="Required Service" >
-      <Picker.ItemsSource>
-        <x:Array Type="{x:Type x:String}">
-          <x:String>Service 1</x:String>
-          <x:String>Service 2</x:String>
-          <x:String>Service 3</x:String>
-        </x:Array>
-      </Picker.ItemsSource>
-    </Picker>
-    <Button Text="Submit" Clicked="OnSubmitClicked" />
-  </StackLayout>
+    <ScrollView>
+        <Grid RowDefinitions="Auto,*">
+            <Grid Grid.Row="0" Padding="30,10">
+                <Image Source="backarrow.png" WidthRequest="20" HeightRequest="20" HorizontalOptions="Start">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="Back_Tapped"/>
+                    </Image.GestureRecognizers>
+                </Image>
+                <Label Text="Book Service" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" FontSize="21" FontAttributes="Bold" TextColor="{x:DynamicResource Primary}" Padding="10,20"/>
+                <Frame HorizontalOptions="End" CornerRadius="10" BackgroundColor="Transparent" WidthRequest="40" HeightRequest="40" Margin="0" Padding="0">
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="Profile_tapped"/>
+                    </Frame.GestureRecognizers>
+                    <Image Source="shop.jpeg" Aspect="AspectFill"/>
+                </Frame>
+            </Grid>
+            <StackLayout Grid.Row="1" Margin="15" Padding="10" Spacing="20">
+                <Entry Placeholder="Name" Text="{Binding Name}" PlaceholderColor="{x:DynamicResource PrimaryDarkText}" />
+                <Entry Placeholder="Email" Text="{Binding Email}" PlaceholderColor="{x:DynamicResource PrimaryDarkText}" />
+                <Entry Placeholder="Mobile Number" Text="{Binding MobileNumber}" PlaceholderColor="{x:DynamicResource PrimaryDarkText}" Keyboard="Telephone" MaxLength="10" />
+                <Entry Placeholder="Address" Text="{Binding Address}" PlaceholderColor="{x:DynamicResource PrimaryDarkText}" />
+                <Entry Placeholder="City" Text="{Binding City}" PlaceholderColor="{x:DynamicResource PrimaryDarkText}" />
+                <Entry Placeholder="State" Text="{Binding State}" PlaceholderColor="{x:DynamicResource PrimaryDarkText}" />
+                <Entry Placeholder="Pincode" Text="{Binding Pincode}" PlaceholderColor="{x:DynamicResource PrimaryDarkText}" Keyboard="Numeric" MaxLength="6" />
+                <Picker Title="Select your service" SelectedIndex="{Binding SelectedService}" >
+                    <Picker.ItemsSource>
+                        <x:Array Type="{x:Type x:String}" >
+                            <x:String>Mixie</x:String>
+                            <x:String>Grinder</x:String>
+                            <x:String>Fridge</x:String>
+                            <x:String>Induction Stove</x:String>
+                            <x:String>Micro Oven</x:String>
+                        </x:Array>
+                    </Picker.ItemsSource>
+                </Picker>
+                <Button Text="Book our service now"  Command="{Binding BookNow}" Margin="0,10" VerticalOptions="EndAndExpand" />
+            </StackLayout>
+        </Grid>
+    </ScrollView>
 
 </ContentPage>
     

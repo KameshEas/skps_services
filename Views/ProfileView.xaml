@@ -99,6 +99,6 @@
                 </Grid>
             </Grid>
         </Grid>
-        <Button Grid.Row="3" Margin="15" Text="Log Out" TextColor="{x:StaticResource FlashWhite}" VerticalOptions="EndAndExpand" FontAttributes="Bold" FontSize="20" HeightRequest="60" CornerRadius="10" ImageSource="logout.png" />
+        <Button Grid.Row="3" Margin="15" Text="Log Out" TextColor="{x:StaticResource FlashWhite}"  Command="{Binding LogoutCommand}" VerticalOptions="EndAndExpand" FontAttributes="Bold" FontSize="20" HeightRequest="60" CornerRadius="10" ImageSource="logout.png" />
     </Grid>
 </ContentPage>
