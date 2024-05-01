@@ -74,8 +74,10 @@
 	  <None Remove="Resources\Images\login.svg" />
 	  <None Remove="Resources\Images\logout.png" />
 	  <None Remove="Resources\Images\mobile.png" />
+	  <None Remove="Resources\Images\order.svg" />
 	  <None Remove="Resources\Images\password.png" />
 	  <None Remove="Resources\Images\pinmarker.png" />
+	  <None Remove="Resources\Images\profile_1.png" />
 	  <None Remove="Resources\Images\rightarrow.png" />
 	  <None Remove="Resources\Images\service.svg" />
 	  <None Remove="Resources\Images\services.png" />
@@ -83,6 +85,7 @@
 	  <None Remove="Resources\Images\sign_up.svg" />
 	  <None Remove="Resources\Images\skps.png" />
 	  <None Remove="Resources\Images\user.png" />
+	  <None Remove="Resources\Images\userpage.svg" />
 	</ItemGroup>
 
 	<ItemGroup>

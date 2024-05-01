@@ -5,7 +5,6 @@ namespace skps_services.Views;
 
 public partial class ProfileView : ContentPage
 {
-    public ICommand NavigateCommand => new Command(async () => await Shell.Current.GoToAsync("//ContactUs"));
     public ProfileView()
 	{
 		InitializeComponent();
@@ -25,12 +24,6 @@ public partial class ProfileView : ContentPage
     private async void Password_Tapped(object sender, TappedEventArgs e)
     {
         await Navigation.PushModalAsync(new PasswordView());
-    }
-
-    private async void AboutUs_Tapped(object sender, TappedEventArgs e)
-    {
-        await Navigation.PushModalAsync(new AboutUsView());
-
     }
 
     private async void Services_Tapped(object sender, TappedEventArgs e)

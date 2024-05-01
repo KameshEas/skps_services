@@ -4,13 +4,13 @@
              xmlns:local="clr-namespace:skps_services.ViewModels" 
              xmlns:mopups="clr-namespace:Mopups;assembly=Mopups"
              x:Class="skps_services.Views.ServicesView"
-             Title="Services" BackgroundColor="{x:DynamicResource FlashWhite}">
+             BackgroundColor="{x:DynamicResource FlashWhite}">
 
     <ContentPage.BindingContext>
         <local:ServicesViewModel />
     </ContentPage.BindingContext>
     
-    <Grid RowDefinitions="Auto,Auto" Margin="14,2" Padding="10,8" RowSpacing="5">
+    <Grid RowDefinitions="Auto,Auto" Margin="14,2" Padding="14,10" RowSpacing="5">
         <Grid Grid.Row="0">
             <Image Source="backarrow.png" WidthRequest="20" HeightRequest="20" HorizontalOptions="Start">
                 <Image.GestureRecognizers>
@@ -18,11 +18,11 @@
                 </Image.GestureRecognizers>
             </Image>
             <Label Text="Our Services" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" FontSize="21" FontAttributes="Bold" TextColor="{x:DynamicResource Primary}" Padding="10,20"/>
-            <Frame HorizontalOptions="End" CornerRadius="10" BackgroundColor="Transparent" WidthRequest="40" HeightRequest="40" Margin="0" Padding="0">
+            <Frame HorizontalOptions="End" CornerRadius="10" BorderColor="Transparent" BackgroundColor="Transparent" WidthRequest="35" HeightRequest="35" Margin="0" Padding="0">
                 <Frame.GestureRecognizers>
                     <TapGestureRecognizer Tapped="Profile_tapped"/>
                 </Frame.GestureRecognizers>
-                <Image Source="shop.jpeg" Aspect="AspectFill"/>
+                <Image Source="profile_1.png" Aspect="AspectFill"/>
             </Frame>
         </Grid>
         <CollectionView ItemsSource="{Binding Services}" Grid.Row="1" >

@@ -67,7 +67,7 @@ namespace skps_services.ViewModels
             }
             catch (Exception ex)
             {
-                await App.Current.MainPage.DisplayAlert("Alert", "Incorrect Login Credentials. Please try again!!", "OK");
+                await App.Current.MainPage.DisplayAlert("Invalid", "Incorrect Login Credentials. Please try again!!", "OK");
             }
         }
 

@@ -6,4 +6,9 @@ public partial class UserDetailsView : ContentPage
 	{
 		InitializeComponent();
 	}
+    private async void Back_Tapped(object sender, TappedEventArgs e)
+    {
+        await Navigation.PopModalAsync();
+
+    }
 }

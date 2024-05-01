@@ -13,11 +13,11 @@
                     </Image.GestureRecognizers>
                 </Image>
                 <Label Text="Book Service" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" FontSize="21" FontAttributes="Bold" TextColor="{x:DynamicResource Primary}" Padding="10,20"/>
-                <Frame HorizontalOptions="End" CornerRadius="10" BackgroundColor="Transparent" WidthRequest="40" HeightRequest="40" Margin="0" Padding="0">
+                <Frame HorizontalOptions="End" BorderColor="Transparent" CornerRadius="10" BackgroundColor="Transparent" WidthRequest="35" HeightRequest="35" Margin="0" Padding="0">
                     <Frame.GestureRecognizers>
                         <TapGestureRecognizer Tapped="Profile_tapped"/>
                     </Frame.GestureRecognizers>
-                    <Image Source="shop.jpeg" Aspect="AspectFill"/>
+                    <Image Source="profile_1.png" Aspect="AspectFill"/>
                 </Frame>
             </Grid>
             <StackLayout Grid.Row="1" Margin="15" Padding="10" Spacing="20">

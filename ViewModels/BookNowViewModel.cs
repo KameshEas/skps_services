@@ -14,7 +14,6 @@ namespace skps_services.ViewModels
         public string webApiKey = "AIzaSyC8q_AFMR9VeYAKJ0ld6CQNLPTscbdgP0s";
         public string Uri = "https://skps-66b64-default-rtdb.firebaseio.com";
         private FirebaseClient _firebaseClient;
-        //private DataService _dataService;
         private INavigation _navigation;
         private string name;
         private string email;
@@ -181,7 +180,7 @@ namespace skps_services.ViewModels
             try
             {
                 // Construct the email body with all the booking details
-                string body = "<h2>Booking Details:</h2>" +
+                string body = "<h2>" + "Dear Customer your booking details are as follows" + "</h2>" +
                               "<p><strong>Name:</strong> " + bookingDetails.Name + "</p>" +
                               "<p><strong>Email:</strong> " + bookingDetails.Email + "</p>" +
                               "<p><strong>Mobile Number:</strong> " + bookingDetails.MobileNumber + "</p>" +
@@ -189,7 +188,8 @@ namespace skps_services.ViewModels
                               "<p><strong>City:</strong> " + bookingDetails.City + "</p>" +
                               "<p><strong>State:</strong> " + bookingDetails.State + "</p>" +
                               "<p><strong>Pincode:</strong> " + bookingDetails.Pincode + "</p>" +
-                              "<p><strong>Service:</strong> " + bookingDetails.SelectedService + "</p>";
+                              "<p><strong>Service:</strong> " + bookingDetails.SelectedService + "</p>" +
+                              "<p>Thanks for choosing Sri Kannigaparameshwari Services. Share us your valuable reviews</p>";
 
                 // Configure SMTP client
                 using (var smtpClient = new SmtpClient("smtp.gmail.com", 587))

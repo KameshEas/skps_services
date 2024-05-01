@@ -12,7 +12,7 @@
         <local:ContactViewModel />
     </ContentPage.BindingContext>
 
-    <Grid RowDefinitions="Auto,*,Auto">
+    <Grid RowDefinitions="Auto,*,Auto"  Margin="14,2" Padding="10,8">
         <Image Source="backarrow.png" HorizontalOptions="Start" HeightRequest="20" WidthRequest="20" Margin="14,15,0,0">
         <Image.GestureRecognizers>
             <TapGestureRecognizer Tapped="Back_Tapped"/>
@@ -24,7 +24,7 @@
             <CollectionView ItemsSource="{Binding ContactOptions}">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <Grid RowDefinitions="*,*" ColumnDefinitions="*,*" RowSpacing="20">
+                        <Grid RowDefinitions="*,*" ColumnDefinitions="Auto,*" RowSpacing="20">
                             <Image Source="{Binding Icon}" Grid.Row="0"  Grid.Column="1" VerticalOptions="Center" Grid.ColumnSpan="2" WidthRequest="20" HeightRequest="20" HorizontalOptions="End">
                                 <Image.GestureRecognizers>
                                     <TapGestureRecognizer Command="{Binding TapCommand}"/>

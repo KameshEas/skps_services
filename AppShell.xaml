@@ -13,8 +13,8 @@
         <Tab Icon="services.png" Title="Services">
             <ShellContent ContentTemplate="{DataTemplate views:ServicesView}"/>
         </Tab>
-        <Tab Icon="about_us.png" Title="About Us">
+        <!--<Tab Icon="about_us.png" Title="About Us">
             <ShellContent ContentTemplate="{DataTemplate views:AboutUsView}"/>
-        </Tab>
+        </Tab>-->
     </TabBar>
 </Shell>

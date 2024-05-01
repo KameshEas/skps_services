@@ -1,7 +1,6 @@
 ﻿using Firebase.Auth;
 using Firebase.Database;
 using Firebase.Database.Query;
-using skps_services.Services;
 using skps_services.Views;
 using System.ComponentModel;
 using User = skps_services.Models.User;
@@ -13,7 +12,6 @@ namespace skps_services.ViewModels
         public string webApiKey = "AIzaSyC8q_AFMR9VeYAKJ0ld6CQNLPTscbdgP0s";
         public string Uri = "https://skps-66b64-default-rtdb.firebaseio.com";
         private FirebaseClient _firebaseClient;
-        //private DataService _dataService;
         private INavigation _navigation;
         private string email;
         private string password;
@@ -67,15 +65,16 @@ namespace skps_services.ViewModels
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(v));
         }
 
-        public async Task PostDataAsync(string name, string email, string mobileNumber)
+        public async Task PostDataAsync(string uid, string name, string email, string mobileNumber)
         {
-            await _firebaseClient.Child("User").PostAsync(new User
+            await _firebaseClient.Child("User").Child(uid).PutAsync(new User
             {
                 Name = name,
                 Email = email,
                 MobileNumber = mobileNumber,
             });
         }
+
 
 
         public SignUpViewModel(INavigation navigation)
@@ -92,12 +91,12 @@ namespace skps_services.ViewModels
             {
                 var authProvider = new FirebaseAuthProvider(new FirebaseConfig(webApiKey));
                 var auth = await authProvider.CreateUserWithEmailAndPasswordAsync(Email, Password);
-                string token = auth.FirebaseToken;
+                string uid = auth.User.LocalId; // Get the UID of the newly created user
+                await PostDataAsync(uid, Name, Email, MobileNumber);
 
-                await PostDataAsync(Name, Email, MobileNumber);
                 Console.WriteLine("Data written to the Firebase successfully");
 
-                await App.Current.MainPage.DisplayAlert("Alert", "User Registered successfully", "OK");
+                await App.Current.MainPage.DisplayAlert("Successfull", "User Registered successfully", "OK");
                 await this._navigation.PushModalAsync(new LoginView());
                 await this._navigation.PopAsync();
             }
@@ -106,7 +105,7 @@ namespace skps_services.ViewModels
                 if (ex.Reason == AuthErrorReason.EmailExists)
                 {
                     // Account already exists, navigate to login page
-                    await App.Current.MainPage.DisplayAlert("Alert", "Account already exists. Please Sign In.", "OK");
+                    await App.Current.MainPage.DisplayAlert("Exist", "Account already exists. Please Sign In.", "OK");
                     // Navigate to your login page here
                     await this._navigation.PushModalAsync(new LoginView());
                 }
