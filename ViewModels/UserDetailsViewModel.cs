@@ -4,6 +4,7 @@ using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using Firebase.Database;
 using Firebase.Database.Query;
+using Newtonsoft.Json;
 using skps_services.Models;
 
 namespace skps_services.ViewModels
@@ -24,16 +25,18 @@ namespace skps_services.ViewModels
             }
         }
 
-        public UserDetailsViewModel()
+        //public UserDetailsViewModel(string uid) : this()
+        //{
+        //    _uid = uid;
+        //}
+        public UserDetailsViewModel(string uid)
         {
-            _firebaseClient = new FirebaseClient("https://skps-66b64-default-rtdb.firebaseio.com");
+            _firebaseClient = new FirebaseClient("https://skps-66b64-default-rtdb.firebaseio.com/");
+            _uid = uid;
             LoadUserDetails();
         }
 
-        public UserDetailsViewModel(string uid) : this()
-        {
-            _uid = uid;
-        }
+
 
         private async Task<bool> NodeExists(string nodeName)
         {
@@ -51,6 +54,11 @@ namespace skps_services.ViewModels
                 bool userNodeExists = await NodeExists("User");
                 if (userNodeExists)
                 {
+                   //var  t = await _firebaseClient
+                   //     .Child("User")
+                   //     //.Child(_uid) // Load user data based on the provided uid
+                   //     .OnceAsJsonAsync();
+                   // var o = JsonConvert.DeserializeObject<UserA>(t);         
                     User = await _firebaseClient
                         .Child("User")
                         .Child(_uid) // Load user data based on the provided uid

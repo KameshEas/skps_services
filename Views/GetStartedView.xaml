@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              x:Class="skps_services.Views.GetStartedView"
-             Title="GetStartedView">
+             NavigationPage.HasNavigationBar="False">
     <VerticalStackLayout>
         <Grid RowDefinitions="*,*">
             <Image Grid.Row="0" Source="kitchen.jpg" HeightRequest="920" WidthRequest="900" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" Opacity="0.9"/>

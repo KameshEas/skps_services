@@ -11,5 +11,11 @@ namespace skps_services.Models
         public string Name { get; set; }
         public string Email { get; set; }
         public string MobileNumber { get; set; }
+        public string Uid { get; set; }
+    }
+
+    public class UserA
+    {
+        public Dictionary<string, User> UserAs { get; set; }
     }
 }

@@ -1,4 +1,5 @@
-﻿using Firebase.Auth;
+﻿using Acr.UserDialogs;
+using Firebase.Auth;
 using Newtonsoft.Json;
 using skps_services.Views;
 using System;
@@ -16,7 +17,7 @@ namespace skps_services.ViewModels
         private string password;
 
         public event PropertyChangedEventHandler PropertyChanged;
-        public event Action UserLoggedIn;  // Event to be raised when the user is logged in
+        // public event Action UserLoggedIn;  // Event to be raised when the user is logged in
 
         public Command SignUpBtn { get; }
         public Command LoginBtn { get; }
@@ -44,12 +45,6 @@ namespace skps_services.ViewModels
             this._navigation = navigation;
             SignUpBtn = new Command(RegisterBtnTappedAsync);
             LoginBtn = new Command(LoginBtnTappedAsync);
-
-            if (IsUserLoggedIn())
-            {
-                // Raise the UserLoggedIn event
-                UserLoggedIn?.Invoke();
-            }
         }
 
         private async void LoginBtnTappedAsync(object obj)
@@ -57,35 +52,28 @@ namespace skps_services.ViewModels
             var authProvider = new FirebaseAuthProvider(new FirebaseConfig(webApiKey));
             try
             {
+                UserDialogs.Instance.ShowLoading();
                 var auth = await authProvider.SignInWithEmailAndPasswordAsync(Email, Password);
                 var content = await auth.GetFreshAuthAsync();
+
                 var serializedContent = JsonConvert.SerializeObject(content);
                 Preferences.Set("FreshFirebaseToken", serializedContent);
 
-                // Raise the UserLoggedIn event
-                UserLoggedIn?.Invoke();
+                var expiryDate = DateTime.UtcNow.AddSeconds(content.ExpiresIn);
+                Preferences.Set("TokenExpiry", expiryDate.ToString());
+
+                // Debug logs
+                Console.WriteLine("Token stored: " + serializedContent);
+                Console.WriteLine("Token expiry: " + expiryDate.ToString());
+
+                await _navigation.PushModalAsync(new HomeView()); // Navigate to the main page after successful login
+                UserDialogs.Instance.HideLoading();
             }
             catch (Exception ex)
             {
+                UserDialogs.Instance.HideLoading();
                 await App.Current.MainPage.DisplayAlert("Invalid", "Incorrect Login Credentials. Please try again!!", "OK");
             }
-        }
-
-        private bool IsUserLoggedIn()
-        {
-            // Get the stored token
-            var token = Preferences.Get("FreshFirebaseToken", string.Empty);
-
-            // If there is no token, the user is not logged in
-            if (string.IsNullOrEmpty(token))
-            {
-                return false;
-            }
-
-            // TODO: Validate the token with your backend service
-
-            // If the token is valid, the user is logged in
-            return true;
         }
 
         private async void RegisterBtnTappedAsync(object obj)

@@ -69,6 +69,7 @@
 	  <None Remove="Resources\Images\chat.png" />
 	  <None Remove="Resources\Images\contact_us.svg" />
 	  <None Remove="Resources\Images\email.png" />
+	  <None Remove="Resources\Images\forgot.svg" />
 	  <None Remove="Resources\Images\home.png" />
 	  <None Remove="Resources\Images\kitchen.jpg" />
 	  <None Remove="Resources\Images\login.svg" />
@@ -89,6 +90,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<PackageReference Include="Acr.UserDialogs" Version="9.0.0" />
 		<PackageReference Include="CommunityToolkit.Maui" Version="7.0.1" />
 		<PackageReference Include="Firebase.Auth" Version="1.0.0" />
 		<PackageReference Include="FirebaseAdmin" Version="2.4.0" />
@@ -113,6 +115,9 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\ContactUsView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\ForgotPasswordView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\GetStartedView.xaml">

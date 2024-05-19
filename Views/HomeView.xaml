@@ -2,7 +2,8 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="skps_services.Views.HomeView"
-             Title="Home" BackgroundColor="{x:DynamicResource Primary}">
+             NavigationPage.HasNavigationBar="False"
+             BackgroundColor="{x:DynamicResource Primary}">
     <Grid RowDefinitions="Auto,*,*">
         <Grid Grid.Row="0" Margin="0,8,0,8" >
             <Label Padding="0,0,0,15" Text="Sri Kanniga Parameshwari Services" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" FontSize="18" FontAttributes="Bold" TextColor="{x:DynamicResource FlashWhite}"/>

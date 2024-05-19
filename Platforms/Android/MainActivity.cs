@@ -1,4 +1,5 @@
-﻿using Android.App;
+﻿using Acr.UserDialogs;
+using Android.App;
 using Android.Content.PM;
 using Android.OS;
 
@@ -11,6 +12,7 @@ namespace skps_services
         {
             base.OnCreate(savedInstanceState);
             Platform.Init(this, savedInstanceState);
+            UserDialogs.Init(this);
         }
 
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, Permission[] grantResults)

@@ -12,7 +12,7 @@ public partial class LoginView : ContentPage
         viewModel = new LoginViewModel(Navigation);
         BindingContext = viewModel;
 
-        viewModel.UserLoggedIn += OnUserLoggedIn;
+        // viewModel.UserLoggedIn += OnUserLoggedIn;
         Navigation.PushModalAsync(new HomeView());
     }
     private async void OnUserLoggedIn()

@@ -5,6 +5,7 @@ namespace skps_services.Views;
 
 public partial class ProfileView : ContentPage
 {
+    private string _uid;
     public ProfileView()
 	{
 		InitializeComponent();
@@ -18,12 +19,17 @@ public partial class ProfileView : ContentPage
 
     private async void UserDetails_Tapped(object sender, TappedEventArgs e)
     {
-        await Navigation.PushModalAsync(new UserDetailsView());
+        if (string.IsNullOrEmpty(_uid))
+        {
+            await DisplayAlert("Error", "User ID is missing", "OK");
+            return;
+        }
+        await Navigation.PushModalAsync(new UserDetailsView(_uid));
     }
 
     private async void Password_Tapped(object sender, TappedEventArgs e)
     {
-        await Navigation.PushModalAsync(new PasswordView());
+        await Navigation.PushModalAsync(new ForgotPasswordView());
     }
 
     private async void Services_Tapped(object sender, TappedEventArgs e)
@@ -36,5 +42,12 @@ public partial class ProfileView : ContentPage
     {
         await Navigation.PopModalAsync();
 
+    }
+
+    private async void Logout_Clicked(object sender, EventArgs e)
+    {
+        Preferences.Remove("FreshFirebaseToken");
+        Preferences.Remove("TokenExpiry");
+        await Navigation.PushModalAsync(new LoginView());
     }
 }

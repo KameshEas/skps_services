@@ -11,7 +11,7 @@ namespace skps_services
             builder
                 .UseMauiApp<App>()
                 .UseMauiMaps()
-                //.UseMauiCommunityToolkit()
+                .UseMauiCommunityToolkit()
                 .ConfigureFonts(fonts =>
             {
                 fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");

@@ -1,4 +1,5 @@
-﻿using Firebase.Auth;
+﻿using Acr.UserDialogs;
+using Firebase.Auth;
 using Firebase.Database;
 using Firebase.Database.Query;
 using skps_services.Views;
@@ -154,11 +155,15 @@ namespace skps_services.ViewModels
 
                 // Post the booking details to Firebase
                 await PostDataAsync(Name, Email, MobileNumber, Address, City, State, Pincode, SelectedService);
+                UserDialogs.Instance.Loading();
+
 
                 Console.WriteLine("Booking Details Written to the Firebase successfully");
-
                 // Send email with the booking details
                 await SendEmailAsync(Email, "Booking Confirmation", bookingDetails);
+                
+                UserDialogs.Instance.HideLoading();
+
 
                 await App.Current.MainPage.DisplayAlert("Alert", "Booking successful. Check the mail", "OK");
             }
