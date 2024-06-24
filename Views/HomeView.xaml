@@ -3,10 +3,10 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="skps_services.Views.HomeView"
              NavigationPage.HasNavigationBar="False"
-             BackgroundColor="{x:DynamicResource Primary}">
+             BackgroundColor="{x:StaticResource Primary}">
     <Grid RowDefinitions="Auto,*,*">
         <Grid Grid.Row="0" Margin="0,8,0,8" >
-            <Label Padding="0,0,0,15" Text="Sri Kanniga Parameshwari Services" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" FontSize="18" FontAttributes="Bold" TextColor="{x:DynamicResource FlashWhite}"/>
+            <Label Padding="0,0,0,15" Text="Sri Kanniga Parameshwari Services" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" FontSize="18" FontAttributes="Bold" TextColor="{x:StaticResource FlashWhite}"/>
             <Frame Margin="20,0,10,20" HorizontalOptions="End" CornerRadius="10" BorderColor="Transparent" BackgroundColor="Transparent" HeightRequest="35" WidthRequest="35" VerticalOptions="Center" Padding="0">
                 <Frame.GestureRecognizers>
                     <TapGestureRecognizer Tapped="Profile_tapped"/>
@@ -19,22 +19,22 @@
                 <Image Source="shop.Jpeg" Aspect="AspectFill" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Opacity="0.6"/>
             </Grid>
         </Frame>
-        <Frame Grid.Row="2" BackgroundColor="{x:DynamicResource Primary}" BorderColor="Transparent" CornerRadius="0" Margin="0" Padding="0">
+        <Frame Grid.Row="2" BackgroundColor="{x:StaticResource Primary}" BorderColor="Transparent" CornerRadius="0" Margin="0" Padding="0">
             <Grid Padding="20,10" RowDefinitions="Auto,*,*">
                 <Label Grid.Row="0" 
                 Text="We are a well-established furniture and home appliance store in Thirukazhukundram since 1980. We offer a wide range of brand new furniture, home appliances, and utensils for marriages, festivals, and events."
                 VerticalOptions="Center"  Margin="0,15"
                 HorizontalOptions="Center" FontSize="18" CharacterSpacing="2" LineHeight="1"
-                LineBreakMode="WordWrap" TextColor="{x:DynamicResource FlashWhite}" />
-                <!--<Label Grid.Row="1" Text="Services We Offer:" FontAttributes="Bold" TextColor="{x:DynamicResource FlashWhite}" Padding="0,0,0,6"/>
+                LineBreakMode="WordWrap" TextColor="{x:StaticResource FlashWhite}" />
+                <!--<Label Grid.Row="1" Text="Services We Offer:" FontAttributes="Bold" TextColor="{x:StaticResource FlashWhite}" Padding="0,0,0,6"/>
                 <StackLayout Grid.Row="1" Spacing="12" Padding="16,0,6,0">
-                    <Label Text="• Washing Machine" TextColor="{x:DynamicResource FlashWhite}" />
-                    <Label Text="• Air Conditioner" TextColor="{x:DynamicResource FlashWhite}" />
-                    <Label Text="• Mixie / Grinder" TextColor="{x:DynamicResource FlashWhite}" />
-                    <Label Text="• Fridge" TextColor="{x:DynamicResource FlashWhite}" />
-                    <Label Text="• Tv" TextColor="{x:DynamicResource FlashWhite}" />
+                    <Label Text="• Washing Machine" TextColor="{x:StaticResource FlashWhite}" />
+                    <Label Text="• Air Conditioner" TextColor="{x:StaticResource FlashWhite}" />
+                    <Label Text="• Mixie / Grinder" TextColor="{x:StaticResource FlashWhite}" />
+                    <Label Text="• Fridge" TextColor="{x:StaticResource FlashWhite}" />
+                    <Label Text="• Tv" TextColor="{x:StaticResource FlashWhite}" />
                 </StackLayout>-->
-                <Button Grid.Row="2" VerticalOptions="End" Margin="0,20" BackgroundColor="White" Text="Book Your Service Now" FontAttributes="Bold" FontSize="14" TextColor="{x:DynamicResource PrimaryDarkText}" WidthRequest="200" HeightRequest="50" Clicked="BookService_Clicked" />
+                <Button Grid.Row="2" VerticalOptions="End" Margin="0,20" BackgroundColor="White" Text="Book Your Service Now" FontAttributes="Bold" FontSize="14" TextColor="{x:StaticResource PrimaryDarkText}" WidthRequest="200" HeightRequest="50" Clicked="BookService_Clicked" />
             </Grid>
         </Frame>
     </Grid>

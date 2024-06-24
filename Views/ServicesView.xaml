@@ -4,7 +4,7 @@
              xmlns:local="clr-namespace:skps_services.ViewModels" 
              xmlns:mopups="clr-namespace:Mopups;assembly=Mopups"
              x:Class="skps_services.Views.ServicesView"
-             BackgroundColor="{x:DynamicResource FlashWhite}">
+             BackgroundColor="{x:StaticResource FlashWhite}">
 
     <ContentPage.BindingContext>
         <local:ServicesViewModel />
@@ -17,7 +17,7 @@
                     <TapGestureRecognizer Tapped="Back_Tapped"/>
                 </Image.GestureRecognizers>
             </Image>
-            <Label Text="Our Services" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" FontSize="21" FontAttributes="Bold" TextColor="{x:DynamicResource Primary}" Padding="10,20"/>
+            <Label Text="Our Services" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" FontSize="21" FontAttributes="Bold" TextColor="{x:StaticResource Primary}" Padding="10,20"/>
             <Frame HorizontalOptions="End" CornerRadius="10" BorderColor="Transparent" BackgroundColor="Transparent" WidthRequest="35" HeightRequest="35" Margin="0" Padding="0">
                 <Frame.GestureRecognizers>
                     <TapGestureRecognizer Tapped="Profile_tapped"/>
@@ -28,14 +28,14 @@
         <CollectionView ItemsSource="{Binding Services}" Grid.Row="1" >
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <Frame Margin="1" BorderColor="Transparent" HeightRequest="140" HasShadow="True" CornerRadius="10" BackgroundColor="{x:DynamicResource Primary}">
+                    <Frame Margin="1" BorderColor="Transparent" HeightRequest="140" HasShadow="True" CornerRadius="10" BackgroundColor="{x:StaticResource Primary}">
                         <Grid ColumnDefinitions="Auto,Auto" ColumnSpacing="25">
                             <Frame WidthRequest="100" Grid.Column="0" HeightRequest="90" Margin="0" Padding="0" HorizontalOptions="Start">
                                 <Image Source="{Binding ImgSrc}" Aspect="AspectFill"/>
                             </Frame>
                             <Grid Grid.Column="1" RowDefinitions="Auto,Auto" HorizontalOptions="Start" RowSpacing="20">
-                                <Label Grid.Row="0" Text="{Binding Products}" FontAttributes="Bold" FontSize="20"  TextColor="{x:DynamicResource FlashWhite}"/>
-                                <Button Grid.Row="1" VerticalOptions="Start" Text="Book Now"  BackgroundColor="{x:DynamicResource FlashWhite}" Clicked="BookNow_Clicked" FontAttributes="Bold" FontSize="14" TextColor="{x:DynamicResource Primary}" WidthRequest="100" HeightRequest="40" />
+                                <Label Grid.Row="0" Text="{Binding Products}" FontAttributes="Bold" FontSize="20"  TextColor="{x:StaticResource FlashWhite}"/>
+                                <Button Grid.Row="1" VerticalOptions="Start" Text="Book Now"  BackgroundColor="{x:StaticResource FlashWhite}" Clicked="BookNow_Clicked" FontAttributes="Bold" FontSize="14" TextColor="{x:StaticResource Primary}" WidthRequest="100" HeightRequest="40" />
                             </Grid>
                         </Grid>
                     </Frame>

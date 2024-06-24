@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="skps_services.Views.BookNowView"
-             BackgroundColor="{x:DynamicResource FlashWhite}">
+             BackgroundColor="{x:StaticResource FlashWhite}">
 
     <ScrollView>
         <Grid RowDefinitions="Auto,*">
@@ -12,7 +12,7 @@
                         <TapGestureRecognizer Tapped="Back_Tapped"/>
                     </Image.GestureRecognizers>
                 </Image>
-                <Label Text="Book Service" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" FontSize="21" FontAttributes="Bold" TextColor="{x:DynamicResource Primary}" Padding="10,20"/>
+                <Label Text="Book Service" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" FontSize="21" FontAttributes="Bold" TextColor="{x:StaticResource Primary}" Padding="10,20"/>
                 <Frame HorizontalOptions="End" BorderColor="Transparent" CornerRadius="10" BackgroundColor="Transparent" WidthRequest="35" HeightRequest="35" Margin="0" Padding="0">
                     <Frame.GestureRecognizers>
                         <TapGestureRecognizer Tapped="Profile_tapped"/>
@@ -21,13 +21,13 @@
                 </Frame>
             </Grid>
             <StackLayout Grid.Row="1" Margin="15" Padding="10" Spacing="20">
-                <Entry Placeholder="Name" Text="{Binding Name}" PlaceholderColor="{x:DynamicResource PrimaryDarkText}" />
-                <Entry Placeholder="Email" Text="{Binding Email}" PlaceholderColor="{x:DynamicResource PrimaryDarkText}" />
-                <Entry Placeholder="Mobile Number" Text="{Binding MobileNumber}" PlaceholderColor="{x:DynamicResource PrimaryDarkText}" Keyboard="Telephone" MaxLength="10" />
-                <Entry Placeholder="Address" Text="{Binding Address}" PlaceholderColor="{x:DynamicResource PrimaryDarkText}" />
-                <Entry Placeholder="City" Text="{Binding City}" PlaceholderColor="{x:DynamicResource PrimaryDarkText}" />
-                <Entry Placeholder="State" Text="{Binding State}" PlaceholderColor="{x:DynamicResource PrimaryDarkText}" />
-                <Entry Placeholder="Pincode" Text="{Binding Pincode}" PlaceholderColor="{x:DynamicResource PrimaryDarkText}" Keyboard="Numeric" MaxLength="6" />
+                <Entry Placeholder="Name" Text="{Binding Name}" PlaceholderColor="{x:StaticResource PrimaryDarkText}" />
+                <Entry Placeholder="Email" Text="{Binding Email}" PlaceholderColor="{x:StaticResource PrimaryDarkText}" />
+                <Entry Placeholder="Mobile Number" Text="{Binding MobileNumber}" PlaceholderColor="{x:StaticResource PrimaryDarkText}" Keyboard="Telephone" MaxLength="10" />
+                <Entry Placeholder="Address" Text="{Binding Address}" PlaceholderColor="{x:StaticResource PrimaryDarkText}" />
+                <Entry Placeholder="City" Text="{Binding City}" PlaceholderColor="{x:StaticResource PrimaryDarkText}" />
+                <Entry Placeholder="State" Text="{Binding State}" PlaceholderColor="{x:StaticResource PrimaryDarkText}" />
+                <Entry Placeholder="Pincode" Text="{Binding Pincode}" PlaceholderColor="{x:StaticResource PrimaryDarkText}" Keyboard="Numeric" MaxLength="6" />
                 <Picker Title="Select your service" SelectedIndex="{Binding SelectedService}" >
                     <Picker.ItemsSource>
                         <x:Array Type="{x:Type x:String}" >
