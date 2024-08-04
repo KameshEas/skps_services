@@ -7,25 +7,19 @@ public partial class LoginView : ContentPage
     private LoginViewModel viewModel;
 
     public LoginView()
-	{
-		InitializeComponent();
+    {
+        InitializeComponent();
         viewModel = new LoginViewModel(Navigation);
         BindingContext = viewModel;
+    }
 
-        // viewModel.UserLoggedIn += OnUserLoggedIn;
-        Navigation.PushModalAsync(new HomeView());
-    }
-    private async void OnUserLoggedIn()
-    {
-        await Navigation.PushModalAsync(new HomeView());
-    }
     protected override bool OnBackButtonPressed()
     {
-        return false;
+        return true;
     }
 
     private async void SignUp_Clicked(object sender, EventArgs e)
-	{
+    {
         await Navigation.PushModalAsync(new SignUpView());
     }
 }

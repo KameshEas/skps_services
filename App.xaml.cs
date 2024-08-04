@@ -2,6 +2,7 @@
 using FirebaseAdmin;
 using Google.Apis.Auth.OAuth2;
 using Newtonsoft.Json;
+using skps_services.Constants;
 using skps_services.Views;
 
 namespace skps_services
@@ -15,15 +16,11 @@ namespace skps_services
             UserAppTheme = AppTheme.Light;
 
             MainPage = new NavigationPage(new GetStartedView());
-
-            // Debug log to indicate app startup
             Console.WriteLine("App initialized.");
 
-            // Check if there is a stored login token
             var token = Preferences.Get("FreshFirebaseToken", null);
             var tokenExpiry = Preferences.Get("TokenExpiry", null);
 
-            // Debug logs to show token and expiry date
             Console.WriteLine("Stored token: " + token);
             Console.WriteLine("Stored token expiry: " + tokenExpiry);
 
@@ -36,24 +33,22 @@ namespace skps_services
 
                     if (expiryDate > DateTime.UtcNow)
                     {
-                        // Debug log to indicate valid token
                         Console.WriteLine("Token is valid. Navigating to HomeView.");
-                        MainPage = new NavigationPage(new HomeView()); // Navigate to the main page if token is valid
+                        MainPage = new NavigationPage(new HomeView());
                     }
                     else
                     {
-                        // Debug log to indicate expired token
                         Console.WriteLine("Token has expired. Removing token and navigating to LoginView.");
                         Preferences.Remove("FreshFirebaseToken");
                         Preferences.Remove("TokenExpiry");
-                        MainPage = new NavigationPage(new LoginView()); // Navigate to login page if token expired
+                        MainPage = new NavigationPage(new LoginView());
                     }
                 }
                 else
                 {
                     // Debug log to indicate parsing failure
                     Console.WriteLine("Failed to parse token expiry date. Navigating to LoginView.");
-                    MainPage = new NavigationPage(new LoginView()); // Navigate to login page if parsing failed
+                    MainPage = new NavigationPage(new LoginView());
                 }
             }
             else
@@ -62,6 +57,54 @@ namespace skps_services
                 Console.WriteLine("No token found. Navigating to LoginView.");
                 MainPage = new NavigationPage(new LoginView()); // Navigate to GetStartedView if no token
             }
+        }
+
+        protected override void OnResume()
+        {
+            base.OnResume();
+
+            Task.Run(async () => await CheckUserAuthenticationAsync());
+        }
+        private async Task CheckUserAuthenticationAsync()
+        {
+            bool isLoggedIn = await IsUserAuthenticatedAsync();
+
+            MainThread.BeginInvokeOnMainThread(() =>
+            {
+                if (!isLoggedIn)
+                {
+                    MainPage = new NavigationPage(new LoginView());
+                }
+                else
+                {
+                    MainPage = new NavigationPage(new HomeView());
+                }
+            });
+        }
+        private async Task<bool> IsUserAuthenticatedAsync()
+        {
+            try
+            {
+                var authProvider = new FirebaseAuthProvider(new FirebaseConfig(AppConstant.WebApiKey));
+                var token = Preferences.Get("FreshFirebaseToken", null);
+
+                if (!string.IsNullOrEmpty(token))
+                {
+                    // Attempt to verify token
+                    var auth = await authProvider.GetUserAsync(token);
+
+                    if (auth != null)
+                    {
+                        return true;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+            return false;
         }
     }
 }

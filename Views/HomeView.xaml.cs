@@ -1,8 +1,13 @@
+using skps_services.Constants;
+using System.Globalization;
+
 namespace skps_services.Views;
 
 public partial class HomeView : ContentPage
 {
-	public HomeView()
+    string uid = UserStore.LocalId;
+
+    public HomeView()
 	{
 		InitializeComponent();
 	}
@@ -18,7 +23,18 @@ public partial class HomeView : ContentPage
     }
     private async void Profile_tapped(object sender, TappedEventArgs e)
     {
-        await Navigation.PushModalAsync(new ProfileView());
+        await Navigation.PushModalAsync(new ProfileView(uid));
 
+    }
+
+    private void OnLanguageChanged(object sender, EventArgs e)
+    {
+        var selectedLanguage = LanguagePicker.SelectedItem.ToString();
+        var culture = new CultureInfo(selectedLanguage);
+
+        CultureInfo.DefaultThreadCurrentCulture = culture;
+        CultureInfo.DefaultThreadCurrentUICulture = culture;
+
+        Application.Current.MainPage = new HomeView();
     }
 }

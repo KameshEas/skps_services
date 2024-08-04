@@ -3,32 +3,78 @@ using Firebase.Auth;
 using Firebase.Database;
 using Firebase.Database.Query;
 using Newtonsoft.Json;
+using skps_services.Constants;
+using skps_services.Models;
 using skps_services.Views;
+using System;
 using System.ComponentModel;
-using User = skps_services.Models.User;
+using System.Threading.Tasks;
 
 namespace skps_services.ViewModels
 {
     public class SignUpViewModel : INotifyPropertyChanged
     {
-        public string webApiKey = "AIzaSyC8q_AFMR9VeYAKJ0ld6CQNLPTscbdgP0s";
-        public string Uri = "https://skps-66b64-default-rtdb.firebaseio.com";
+        private readonly string webApiKey = AppConstant.WebApiKey;
+        private readonly string uri = AppConstant.FirebaseUri;
         private FirebaseClient _firebaseClient;
         private INavigation _navigation;
         private string email;
         private string password;
+        private string firstName;
+        private string lastName;
+        private string displayName;
         private string mobileNumber;
-        private string name;
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public string Name
+        public string FirstName
         {
-            get => name;
+            get => firstName;
             set
             {
-                name = value;
-                RaisePropertyChanged("Name");
+                firstName = value;
+                RaisePropertyChanged(nameof(FirstName));
+            }
+        }
+
+        public string LastName
+        {
+            get => lastName;
+            set
+            {
+                lastName = value;
+                RaisePropertyChanged(nameof(LastName));
+            }
+        }
+
+        public string DisplayName
+        {
+            get => displayName;
+            set
+            {
+                displayName = value;
+                RaisePropertyChanged(nameof(DisplayName));
+                UpdateNameFromDisplayName();
+            }
+        }
+
+        public string Email
+        {
+            get => email;
+            set
+            {
+                email = value;
+                RaisePropertyChanged(nameof(Email));
+            }
+        }
+
+        public string Password
+        {
+            get => password;
+            set
+            {
+                password = value;
+                RaisePropertyChanged(nameof(Password));
             }
         }
 
@@ -38,64 +84,61 @@ namespace skps_services.ViewModels
             set
             {
                 mobileNumber = value;
-                RaisePropertyChanged("MobileNumber");
-            }
-        }
-        public string Email
-        {
-            get => email;
-            set
-            {
-                email = value;
-                RaisePropertyChanged("Email");
-            }
-        }
-
-        public string Password
-        {
-            get => password; set
-            {
-                password = value;
-                RaisePropertyChanged("Password");
+                RaisePropertyChanged(nameof(MobileNumber));
             }
         }
 
         public Command SignUp { get; }
 
-        private void RaisePropertyChanged(string v)
+        private void RaisePropertyChanged(string propertyName)
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(v));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        public async Task PostDataAsync(string uid, string name, string email, string mobileNumber)
+        private void UpdateNameFromDisplayName()
+        {
+            if (string.IsNullOrWhiteSpace(displayName))
+            {
+                FirstName = string.Empty;
+                LastName = string.Empty;
+                return;
+            }
+
+            var names = displayName.Split(' ', 2);
+            FirstName = names[0];
+            LastName = names.Length > 1 ? names[1] : string.Empty;
+        }
+
+        public async Task PostDataAsync(string uid, string firstName, string lastName, string displayName, string email, string mobileNumber)
         {
             if (string.IsNullOrEmpty(uid))
             {
                 throw new ArgumentNullException(nameof(uid), "UID cannot be null or empty.");
             }
 
-            var user = new User
+            var user = new UserNew
             {
-                Uid = uid,
-                Name = name,
+                LocalId = uid,
+                FederatedId = string.Empty,
+                FirstName = firstName,
+                LastName = lastName,
+                DisplayName = displayName,
                 Email = email,
-                MobileNumber = mobileNumber,
+                EmailVerified = false,
+                MobileNumber = mobileNumber
             };
 
             await _firebaseClient.Child("User").Child(uid).PutAsync(JsonConvert.SerializeObject(user));
         }
 
-
-
         public SignUpViewModel(INavigation navigation)
         {
-            this._navigation = navigation;
-            //_dataService = new DataService();  // Initialize the instance
-            _firebaseClient = new FirebaseClient(Uri);
-            SignUp = new Command(SignUpUserTappedAsync);
+            _navigation = navigation;
+            _firebaseClient = new FirebaseClient(uri);
+            SignUp = new Command(async () => await SignUpUserTappedAsync());
         }
 
-        private async void SignUpUserTappedAsync(object obj)
+        private async Task SignUpUserTappedAsync()
         {
             try
             {
@@ -104,15 +147,14 @@ namespace skps_services.ViewModels
                 var auth = await authProvider.CreateUserWithEmailAndPasswordAsync(Email, Password);
 
                 string uid = auth.User.LocalId;
-                await PostDataAsync(uid, Name, Email, MobileNumber);
+                await PostDataAsync(uid, FirstName, LastName, DisplayName, Email, MobileNumber);
 
                 Console.WriteLine("Data written to the Firebase successfully");
 
                 UserDialogs.Instance.HideLoading();
 
-                await App.Current.MainPage.DisplayAlert("Successfull", "User Registered successfully", "OK");
-                await this._navigation.PushModalAsync(new LoginView());
-                await this._navigation.PopModalAsync();
+                await App.Current.MainPage.DisplayAlert("Successful", "User Registered successfully", "OK");
+                await _navigation.PushModalAsync(new LoginView());
             }
             catch (FirebaseAuthException ex)
             {
@@ -121,8 +163,7 @@ namespace skps_services.ViewModels
                     UserDialogs.Instance.HideLoading();
                     // Account already exists, navigate to login page
                     await App.Current.MainPage.DisplayAlert("Exist", "Account already exists. Please Sign In.", "OK");
-                    // Navigate to your login page here
-                    await this._navigation.PushModalAsync(new LoginView());
+                    await _navigation.PushModalAsync(new LoginView());
                 }
                 else
                 {

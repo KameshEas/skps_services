@@ -1,4 +1,5 @@
 using Java.Security;
+using skps_services.Constants;
 using System.Windows.Input;
 
 namespace skps_services.Views;
@@ -9,8 +10,12 @@ public partial class ProfileView : ContentPage
     public ProfileView()
 	{
 		InitializeComponent();
+    }
 
-	}
+    public ProfileView(string uid) : this()
+    {
+        _uid = uid;
+    }
 
     private async void ContactUs_Tapped(object sender, TappedEventArgs e)
     {
@@ -46,8 +51,13 @@ public partial class ProfileView : ContentPage
 
     private async void Logout_Clicked(object sender, EventArgs e)
     {
-        Preferences.Remove("FreshFirebaseToken");
-        Preferences.Remove("TokenExpiry");
-        await Navigation.PushModalAsync(new LoginView());
+        bool confirmed = await DisplayAlert("Logout", "Are you sure you want to log out?", "Logout", "Cancel");
+        if (confirmed)
+        {
+            Preferences.Remove("FreshFirebaseToken");
+            Preferences.Remove("TokenExpiry");
+            await Navigation.PushModalAsync(new LoginView());
+        }
     }
+
 }

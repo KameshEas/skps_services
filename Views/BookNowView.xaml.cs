@@ -1,10 +1,12 @@
+using skps_services.Constants;
 using skps_services.ViewModels;
 
 namespace skps_services.Views;
 
 public partial class BookNowView : ContentPage
 {
-	public BookNowView()
+    string uid = UserStore.LocalId;
+    public BookNowView()
 	{
 		InitializeComponent();
         BindingContext = new BookNowViewModel(Navigation);
@@ -13,7 +15,7 @@ public partial class BookNowView : ContentPage
 
     private async void Profile_tapped(object sender, TappedEventArgs e)
     {
-        await Navigation.PushModalAsync(new ProfileView());
+        await Navigation.PushModalAsync(new ProfileView(uid));
 
     }
 

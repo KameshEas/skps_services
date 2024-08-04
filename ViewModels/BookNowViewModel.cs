@@ -2,6 +2,7 @@
 using Firebase.Auth;
 using Firebase.Database;
 using Firebase.Database.Query;
+using skps_services.Constants;
 using skps_services.Views;
 using System.ComponentModel;
 using System.Net;
@@ -12,8 +13,8 @@ namespace skps_services.ViewModels
 {
     public class BookNowViewModel : INotifyPropertyChanged
     {
-        public string webApiKey = "AIzaSyC8q_AFMR9VeYAKJ0ld6CQNLPTscbdgP0s";
-        public string Uri = "https://skps-66b64-default-rtdb.firebaseio.com";
+        public string webApiKey = AppConstant.WebApiKey;
+        public string Uri = AppConstant.FirebaseUri;
         private FirebaseClient _firebaseClient;
         private INavigation _navigation;
         private string name;
@@ -140,7 +141,6 @@ namespace skps_services.ViewModels
         {
             try
             {
-                // Create a new BookingDetails object with the provided information
                 var bookingDetails = new BookingDetails
                 {
                     Name = name,

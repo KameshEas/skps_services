@@ -1,8 +1,6 @@
 ﻿using Firebase.Auth;
+using skps_services.Constants;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
@@ -10,33 +8,32 @@ namespace skps_services.ViewModels
 {
     public class ForgotPasswordViewModel
     {
-        public ICommand ChangePasswordCommand { get; private set; }
-
-        // Add properties for email and current password
+        public ICommand SendPasswordResetCommand { get; private set; }
         public string Email { get; set; }
-        public string CurrentPassword { get; set; }
 
         public ForgotPasswordViewModel()
         {
-            ChangePasswordCommand = new Command<string>(async (newPassword) => await ChangePassword(Email, CurrentPassword, newPassword));
+            SendPasswordResetCommand = new Command(async () => await SendPasswordResetEmail(Email));
         }
 
-        public async Task ChangePassword(string email, string currentPassword, string newPassword)
+        public async Task SendPasswordResetEmail(string email)
         {
-            // Sign in the user with their current password
-            var authProvider = new FirebaseAuthProvider(new FirebaseConfig("your-api-key"));
-            var auth = await authProvider.SignInWithEmailAndPasswordAsync(email, currentPassword);
+            if (string.IsNullOrEmpty(email))
+            {
+                Console.WriteLine("Email cannot be null or empty.");
+                return;
+            }
 
-            // Change the password
             try
             {
-                // await authProvider.ChangeUserPasswordAsync(auth.FirebaseToken, newPassword);
-                Console.WriteLine("Password updated successfully.");
+                var authProvider = new FirebaseAuthProvider(new FirebaseConfig(AppConstant.WebApiKey));
+                await authProvider.SendPasswordResetEmailAsync(email);
+
+                Console.WriteLine("Password reset email sent successfully.");
             }
             catch (FirebaseAuthException e)
             {
                 Console.WriteLine("Error: " + e.Reason);
-                // Handle exceptions
             }
         }
     }

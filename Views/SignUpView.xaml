@@ -12,7 +12,7 @@
                 <RowDefinition Height="1*"/>
             </Grid.RowDefinitions>
 
-            <Label Text="Sri Kannigaparameshwari Services" Margin="20,30" FontSize="24" HorizontalTextAlignment="Center" FontAttributes="Bold" TextColor="{x:StaticResource PrimaryDarkText}" />
+            <!--<Label Text="Sri Kannigaparameshwari Services" Margin="20,30" FontSize="24" HorizontalTextAlignment="Center" FontAttributes="Bold" TextColor="{x:StaticResource PrimaryDarkText}" />-->
 
             <Border Grid.Row="1" Stroke="Transparent" VerticalOptions="CenterAndExpand" Margin="30,6">
                 <VerticalStackLayout Spacing="10">
@@ -21,7 +21,7 @@
                     <Frame Padding="10" BorderColor="Transparent" CornerRadius="0">
                         <Grid ColumnDefinitions="Auto,*" ColumnSpacing="10">
                             <Image VerticalOptions="Center" Source="user.png" HeightRequest="25" WidthRequest="25" />
-                            <Entry x:Name="NameEntry" VerticalOptions="Center" Text="{Binding Name}" Placeholder="Name" Grid.Column="1"  PlaceholderColor="{x:StaticResource PrimaryDarkText}"/>
+                            <Entry x:Name="NameEntry" VerticalOptions="Center" Text="{Binding DisplayName}" Placeholder="Name" Grid.Column="1"  PlaceholderColor="{x:StaticResource PrimaryDarkText}"/>
                         </Grid>
                     </Frame>
 
@@ -36,7 +36,7 @@
                     <Frame Padding="10" BorderColor="Transparent" CornerRadius="0">
                         <Grid ColumnDefinitions="Auto,*" ColumnSpacing="10">
                             <Image VerticalOptions="Center" Source="mobile.png" HeightRequest="25" WidthRequest="25" />
-                            <Entry x:Name="MobileEntry"  VerticalOptions="Center"  Text="{Binding MobileNumber}" Keyboard="Numeric" Placeholder="Mobile Number" Grid.Column="1"  PlaceholderColor="{x:StaticResource PrimaryDarkText}"/>
+                            <Entry x:Name="MobileEntry"  VerticalOptions="Center"  Text="{Binding MobileNumber}" Keyboard="Numeric" Placeholder="Mobile Number" MaxLength="10" Grid.Column="1"  PlaceholderColor="{x:StaticResource PrimaryDarkText}"/>
                         </Grid>
                     </Frame>
 
