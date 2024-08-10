@@ -105,6 +105,11 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Compile Update="Platforms\Android\Resources\Languages\Strings.Designer.cs">
+	    <DesignTime>True</DesignTime>
+	    <AutoGen>True</AutoGen>
+	    <DependentUpon>Strings.resx</DependentUpon>
+	  </Compile>
 	  <Compile Update="Views\ContactUsView.xaml.cs">
 	    <DependentUpon>ContactUsView.xaml</DependentUpon>
 	  </Compile>
@@ -149,5 +154,14 @@
 	<ItemGroup>
 	  <Folder Include="Platforms\Android\Strings\" />
 	</ItemGroup>
+
+	<ItemGroup>
+	  <EmbeddedResource Update="Platforms\Android\Resources\Languages\Strings.resx">
+	    <Generator>ResXFileCodeGenerator</Generator>
+	    <LastGenOutput>Strings.Designer.cs</LastGenOutput>
+	  </EmbeddedResource>
+	</ItemGroup>
+
+	<ProjectExtensions><VisualStudio><UserProperties XamarinHotReloadDebuggerTimeoutExceptionskps_servicesHideInfoBar="True" /></VisualStudio></ProjectExtensions>
 
 </Project>

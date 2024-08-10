@@ -1,4 +1,5 @@
-﻿using Firebase.Auth;
+﻿using Acr.UserDialogs;
+using Firebase.Auth;
 using skps_services.Constants;
 using System;
 using System.Threading.Tasks;
@@ -13,6 +14,7 @@ namespace skps_services.ViewModels
 
         public ForgotPasswordViewModel()
         {
+            Email = AppConstant.UserEmail;
             SendPasswordResetCommand = new Command(async () => await SendPasswordResetEmail(Email));
         }
 
@@ -27,9 +29,11 @@ namespace skps_services.ViewModels
             try
             {
                 var authProvider = new FirebaseAuthProvider(new FirebaseConfig(AppConstant.WebApiKey));
+                UserDialogs.Instance.ShowLoading("Reset Password");
                 await authProvider.SendPasswordResetEmailAsync(email);
-
+                UserDialogs.Instance.HideLoading();
                 Console.WriteLine("Password reset email sent successfully.");
+                UserDialogs.Instance.Alert("Password Reset", "Reset Link Sent to your Mail", "Ok");
             }
             catch (FirebaseAuthException e)
             {

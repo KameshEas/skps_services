@@ -14,6 +14,24 @@ namespace skps_services.Constants
         public const string ShopNumber = "+91 7708589128";
         public const string FirebaseTokenKey = "FreshFirebaseToken";
         public const string TokenExpiryKey = "TokenExpiry";
+        public static string UserMobileNumber { get; set; } = "";
+        public static string UserName { get; set; }= "";
+        public static string UserEmail { get; set; }= "";
+        public static string IdToken { get; set; }= "";
+        public static string Expiry { get; set; } = "Expiry";
+        public static string SelectedLanguage { get; set; } = "en";
+        public static readonly string[] Services =
+        {
+            "Mixie",
+            "Grinder",
+            "Light Fittings",
+            "Heater - Service",
+            "Heater - Installation",
+            "Gas Stove",
+            "Induction Stove",
+            "Fan - Service",
+            "Fan - Installation"
+        };
     }
     public static class UserStore
     {

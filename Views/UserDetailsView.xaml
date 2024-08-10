@@ -20,13 +20,13 @@
             <Label Grid.Row="0" Text="User Details" FontSize="22" HorizontalOptions="Center" TextColor="{x:StaticResource Primary}" Padding="0,15,0,0" FontAttributes="Bold"/>
         </Grid>
         <Image Grid.Row="1" Source="userpage" WidthRequest="280" Margin="0,40,0,60"/>
-        <Grid Grid.Row="2" RowDefinitions="*,*,*" ColumnDefinitions="*,*" >
-            <Label Grid.Row="0" Grid.Column="0" Text="Name: " FontAttributes="Bold" />
-            <Label Grid.Row="0" Grid.Column="1" Text="{Binding Source={x:Static constants:UserStore.DisplayName}}" />
-            <Label Grid.Row="1" Grid.Column="0" Text="Email: " FontAttributes="Bold" />
-            <Label Grid.Row="1" Grid.Column="1" Text="{Binding Source={x:Static constants:UserStore.Email}}" />
-            <Label Grid.Row="2" Grid.Column="0" Text="Mobile Number: " FontAttributes="Bold" />
-            <Label Grid.Row="2" Grid.Column="1" Text="{Binding Source={x:Static constants:UserStore.MobileNumber}}" />
+        <Grid Grid.Row="2" RowDefinitions="*,*,*" ColumnDefinitions="*,Auto" RowSpacing="15">
+            <Label Grid.Row="0" Grid.Column="0" Text="Name: " FontAttributes="Bold" FontSize="20" TextColor="{x:StaticResource Primary}" />
+            <Label Grid.Row="0" Grid.Column="1" Text="{Binding Source={x:Static constants:AppConstant.UserName}}" FontSize="20" TextColor="{x:StaticResource PrimaryDark}" />
+            <Label Grid.Row="1" Grid.Column="0" Text="Email: " FontAttributes="Bold" FontSize="20" TextColor="{x:StaticResource Primary}" />
+            <Label Grid.Row="1" Grid.Column="1" Text="{Binding Source={x:Static constants:AppConstant.UserEmail}}" FontSize="20" TextColor="{x:StaticResource PrimaryDark}" />
+            <Label Grid.Row="2" Grid.Column="0" Text="Mobile: " FontAttributes="Bold"  FontSize="20" TextColor="{x:StaticResource Primary}" />
+            <Label Grid.Row="2" Grid.Column="1" Text="{Binding Source={x:Static constants:AppConstant.UserMobileNumber}}" FontSize="20" TextColor="{x:StaticResource PrimaryDark}" />
         </Grid>
     </Grid>
 </ContentPage>

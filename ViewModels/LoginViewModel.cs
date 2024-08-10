@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 using FirebaseAuthLinkFirebase = Firebase.Auth.FirebaseAuthLink;
 using FirebaseAuthLinkCustom = skps_services.Models.FirebaseAuthLink;
 using static skps_services.Constants.AppConstant;
+using Newtonsoft.Json.Linq;
 
 namespace skps_services.ViewModels
 {
@@ -75,7 +76,7 @@ namespace skps_services.ViewModels
             var authProvider = new FirebaseAuthProvider(new FirebaseConfig(WebApiKey));
             try
             {
-                UserDialogs.Instance.ShowLoading();
+                UserDialogs.Instance.ShowLoading("Logging In");
                 var auth = await authProvider.SignInWithEmailAndPasswordAsync(Email, Password);
                 var content = await auth.GetFreshAuthAsync();
 
@@ -83,10 +84,20 @@ namespace skps_services.ViewModels
                 await SecureStorage.SetAsync(AppConstant.FirebaseTokenKey, serializedContent);
 
                 var expiryDate = DateTime.UtcNow.AddSeconds(content.ExpiresIn);
-                await SecureStorage.SetAsync(AppConstant.TokenExpiryKey, expiryDate.ToString());
+                await SecureStorage.SetAsync(AppConstant.TokenExpiryKey, expiryDate.ToString("o"));
 
-                Console.WriteLine("Token stored: " + serializedContent);
-                Console.WriteLine("Token expiry: " + expiryDate.ToString());
+                var jsonObject = JObject.Parse(serializedContent);
+                string idToken = jsonObject["idToken"]?.ToString();
+                string expiresIn = jsonObject["expiresIn"]?.ToString();
+
+                AppConstant.IdToken = idToken;
+                AppConstant.Expiry = expiryDate.ToString("o");
+
+                await SecureStorage.SetAsync(AppConstant.IdToken, idToken);
+                await SecureStorage.SetAsync(AppConstant.Expiry, expiryDate.ToString("o"));
+
+                Console.WriteLine("Token stored: " + idToken);
+                Console.WriteLine("Token expiry: " + expiryDate);
 
                 var userClient = new FirebaseClient(AppConstant.FirebaseUri);
                 var userDetails = await userClient
@@ -95,6 +106,10 @@ namespace skps_services.ViewModels
                     .OnceSingleAsync<UserNew>();
 
                 StoreUserDetails(userDetails);
+
+                AppConstant.UserName = userDetails.DisplayName;
+                AppConstant.UserEmail = userDetails.Email;
+                AppConstant.UserMobileNumber = userDetails.MobileNumber;
 
                 await _navigation.PushModalAsync(new HomeView());
             }
@@ -108,6 +123,65 @@ namespace skps_services.ViewModels
                 UserDialogs.Instance.HideLoading();
             }
         }
+
+        //private async Task LoginBtnTappedAsync()
+        //{
+        //    var authProvider = new FirebaseAuthProvider(new FirebaseConfig(WebApiKey));
+        //    try
+        //    {
+        //        UserDialogs.Instance.ShowLoading("Logging In");
+        //        var auth = await authProvider.SignInWithEmailAndPasswordAsync(Email, Password);
+        //        var content = await auth.GetFreshAuthAsync();
+
+        //        var serializedContent = JsonConvert.SerializeObject(content);
+        //        var jsonObject = JObject.Parse(serializedContent);
+        //        await SecureStorage.SetAsync(AppConstant.FirebaseTokenKey, serializedContent);
+
+        //        var expiryDate1 = DateTime.UtcNow.AddSeconds(content.ExpiresIn);
+        //        await SecureStorage.SetAsync(AppConstant.TokenExpiryKey, expiryDate1.ToString());
+
+        //        string idToken = jsonObject["idToken"]?.ToString();
+        //        string expiry = jsonObject["expiresIn"]?.ToString();
+        //        var createdTime = DateTime.Parse(jsonObject["Created"]?.ToString());
+        //        var expiresIn = int.Parse(jsonObject["expiresIn"]?.ToString());
+        //        var expiryDate = createdTime.AddSeconds(expiresIn);
+        //        string expiryDateString = expiryDate.ToString("o");
+
+        //        // Store these in your app's constants or secure storage
+        //        AppConstant.IdToken = idToken;
+        //        AppConstant.Expiry = expiryDate;
+
+        //        await SecureStorage.SetAsync(AppConstant.IdToken, idToken);
+        //        await SecureStorage.SetAsync(AppConstant.Expiry, expiryDateString);
+
+
+        //        Console.WriteLine("Token stored: " + idToken);
+        //        Console.WriteLine("Token expiry: " + expiryDate);
+
+        //        var userClient = new FirebaseClient(AppConstant.FirebaseUri);
+        //        var userDetails = await userClient
+        //            .Child("User")
+        //            .Child(content.User.LocalId)
+        //            .OnceSingleAsync<UserNew>();
+
+        //        StoreUserDetails(userDetails);
+
+        //        AppConstant.UserName = userDetails.DisplayName;
+        //        AppConstant.UserEmail = userDetails.Email;
+        //        AppConstant.UserMobileNumber = userDetails.MobileNumber;
+
+        //        await _navigation.PushModalAsync(new HomeView());
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Console.WriteLine($"Login failed: {ex.Message}");
+        //        await App.Current.MainPage.DisplayAlert("Invalid", "Incorrect Login Credentials. Please try again!!", "OK");
+        //    }
+        //    finally
+        //    {
+        //        UserDialogs.Instance.HideLoading();
+        //    }
+        //}
 
         private async Task RegisterBtnTappedAsync()
         {

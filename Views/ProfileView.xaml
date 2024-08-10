@@ -46,7 +46,7 @@
                 </Grid>
             </Frame>
             
-            <!--<Frame Grid.Row="1" Grid.Column="0" BackgroundColor="{x:StaticResource Primary}" BorderColor="Transparent" HasShadow="True" >
+            <Frame Grid.Row="1" Grid.Column="0" BackgroundColor="{x:StaticResource Primary}" BorderColor="Transparent" HasShadow="True" >
                 <Frame.GestureRecognizers>
                     <TapGestureRecognizer Tapped="Password_Tapped" />
                 </Frame.GestureRecognizers>
@@ -58,8 +58,8 @@
                         </Image.Behaviors>
                     </Image>
                 </Grid>
-            </Frame>-->
-            <Frame  Grid.Row="1" Grid.Column="0"  BackgroundColor="{x:StaticResource Primary}" BorderColor="Transparent" HasShadow="True">
+            </Frame>
+            <Frame  Grid.Row="1" Grid.Column="1"  BackgroundColor="{x:StaticResource Primary}" BorderColor="Transparent" HasShadow="True">
                 <Frame.GestureRecognizers>
                     <TapGestureRecognizer Tapped="ContactUs_Tapped" />
                 </Frame.GestureRecognizers>

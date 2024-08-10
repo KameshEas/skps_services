@@ -30,7 +30,17 @@ public partial class HomeView : ContentPage
     private void OnLanguageChanged(object sender, EventArgs e)
     {
         var selectedLanguage = LanguagePicker.SelectedItem.ToString();
-        var culture = new CultureInfo(selectedLanguage);
+        AppConstant.SelectedLanguage = selectedLanguage;
+        CultureInfo culture;
+
+        if (selectedLanguage == "Tamil")
+        {
+            culture = new CultureInfo("ta");
+        }
+        else
+        {
+            culture = new CultureInfo("en");
+        }
 
         CultureInfo.DefaultThreadCurrentCulture = culture;
         CultureInfo.DefaultThreadCurrentUICulture = culture;

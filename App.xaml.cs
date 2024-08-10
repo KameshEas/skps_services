@@ -3,7 +3,9 @@ using FirebaseAdmin;
 using Google.Apis.Auth.OAuth2;
 using Newtonsoft.Json;
 using skps_services.Constants;
+using skps_services.Services;
 using skps_services.Views;
+using System.Globalization;
 
 namespace skps_services
 {
@@ -13,58 +15,94 @@ namespace skps_services
         {
             InitializeComponent();
 
+            // Set the MainPage with a NavigationPage
+            MainPage = new NavigationPage(new GetStartedView());
+
+            // Determine the first launch and set MainPage accordingly
+            SetMainPageAsync().ConfigureAwait(false);
+
             UserAppTheme = AppTheme.Light;
 
-            MainPage = new NavigationPage(new GetStartedView());
             Console.WriteLine("App initialized.");
+        }
 
-            var token = Preferences.Get("FreshFirebaseToken", null);
-            var tokenExpiry = Preferences.Get("TokenExpiry", null);
+        private async Task SetMainPageAsync()
+        {
+            // Check if the app has been launched before
+            bool isFirstLaunch = Preferences.Get("IsFirstLaunch", true);
 
-            Console.WriteLine("Stored token: " + token);
-            Console.WriteLine("Stored token expiry: " + tokenExpiry);
-
-            if (!string.IsNullOrEmpty(token) && !string.IsNullOrEmpty(tokenExpiry))
+            if (isFirstLaunch)
             {
-                DateTime expiryDate;
-                if (DateTime.TryParse(tokenExpiry, out expiryDate))
-                {
-                    Console.WriteLine("Parsed token expiry date: " + expiryDate.ToString());
+                // If it's the first launch, set MainPage to GetStartedView
+                MainPage = new NavigationPage(new GetStartedView());
 
-                    if (expiryDate > DateTime.UtcNow)
-                    {
-                        Console.WriteLine("Token is valid. Navigating to HomeView.");
-                        MainPage = new NavigationPage(new HomeView());
-                    }
-                    else
-                    {
-                        Console.WriteLine("Token has expired. Removing token and navigating to LoginView.");
-                        Preferences.Remove("FreshFirebaseToken");
-                        Preferences.Remove("TokenExpiry");
-                        MainPage = new NavigationPage(new LoginView());
-                    }
-                }
-                else
-                {
-                    // Debug log to indicate parsing failure
-                    Console.WriteLine("Failed to parse token expiry date. Navigating to LoginView.");
-                    MainPage = new NavigationPage(new LoginView());
-                }
+                // Set the flag to false so it doesn't show GetStartedView on next launches
+                Preferences.Set("IsFirstLaunch", false);
             }
             else
             {
-                // Debug log to indicate no token found
-                Console.WriteLine("No token found. Navigating to LoginView.");
-                MainPage = new NavigationPage(new LoginView()); // Navigate to GetStartedView if no token
+                // If it's not the first launch, attempt auto-login
+                var autoLoginService = new AutoLoginService(MainPage.Navigation);
+                await autoLoginService.AutoLoginAsync();
+
+                // If auto-login fails or token is expired, set MainPage to LoginView
+                bool isLoggedIn = await IsUserAuthenticatedAsync();
+                if (isLoggedIn)
+                {
+                    MainPage = new NavigationPage(new HomeView());
+                }
+                else
+                {
+                    MainPage = new NavigationPage(new LoginView());
+                }
+            }
+        }
+        private async Task AutoLoginAsync()
+        {
+            // Ensure the MainPage is wrapped in a NavigationPage before calling AutoLoginService
+            if (MainPage is NavigationPage navigationPage)
+            {
+                var autoLoginService = new AutoLoginService(navigationPage.Navigation);
+                await autoLoginService.AutoLoginAsync();
+            }
+            else
+            {
+                Console.WriteLine("MainPage is not a NavigationPage, unable to perform auto-login.");
             }
         }
 
-        protected override void OnResume()
+        protected async override void OnStart()
+        {
+            base.OnStart();
+
+            if (MainPage is NavigationPage navigationPage)
+            {
+                var autoLoginService = new AutoLoginService(navigationPage.Navigation);
+                await autoLoginService.AutoLoginAsync();
+            }
+
+            // Set the culture from the saved language
+            var culture = new CultureInfo(AppConstant.SelectedLanguage);
+            CultureInfo.DefaultThreadCurrentCulture = culture;
+            CultureInfo.DefaultThreadCurrentUICulture = culture;
+        }
+
+        protected async override void OnResume()
         {
             base.OnResume();
 
-            Task.Run(async () => await CheckUserAuthenticationAsync());
+            if (MainPage is NavigationPage navigationPage)
+            {
+                var autoLoginService = new AutoLoginService(navigationPage.Navigation);
+                await autoLoginService.AutoLoginAsync();
+            }
+
+            // Set the culture from the saved language
+            var culture = new CultureInfo(AppConstant.SelectedLanguage);
+            CultureInfo.DefaultThreadCurrentCulture = culture;
+            CultureInfo.DefaultThreadCurrentUICulture = culture;
         }
+
         private async Task CheckUserAuthenticationAsync()
         {
             bool isLoggedIn = await IsUserAuthenticatedAsync();
@@ -81,6 +119,7 @@ namespace skps_services
                 }
             });
         }
+
         private async Task<bool> IsUserAuthenticatedAsync()
         {
             try

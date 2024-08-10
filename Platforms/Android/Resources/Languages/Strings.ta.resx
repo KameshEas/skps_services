@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="BookService" xml:space="preserve">
+    <value>சேவையை பதிவு செய்ய</value>
+  </data>
   <data name="Call us" xml:space="preserve">
     <value>எங்களை அழைக்க</value>
   </data>
@@ -126,10 +129,22 @@
   <data name="Email us" xml:space="preserve">
     <value>மின்னஞ்சல் அனுப்ப</value>
   </data>
-  <data name="Sri Kannigaparameshwari Services" xml:space="preserve">
+  <data name="English" xml:space="preserve">
+    <value>ஆங்கிலம்</value>
+  </data>
+  <data name="PrefferedLanguage" xml:space="preserve">
+    <value>விருப்பமான மொழி</value>
+  </data>
+  <data name="SelectLang" xml:space="preserve">
+    <value>மொழியைத் தேர்ந்தெடுக்கவும்</value>
+  </data>
+  <data name="ShopAbout" xml:space="preserve">
+    <value>நாங்கள் 1980 முதல் திருக்கழுகுன்றம் பகுதியில் நன்கு நிறுவப்பட்ட மரச்சாமான்கள் மற்றும் வீட்டு உபயோகப் மற்றும் பாத்திரங்களை கடையாக செயல்பட்டு வருகின்றோம். திருமணங்கள், திருவிழாக்கள் மற்றும் சுப நிகழ்வுகளுக்கான புதிய மரச்சாமான்கள், வீட்டு உபயோகப் பொருட்கள் மற்றும் பாத்திரங்களை நாங்கள் வழங்குகிறோம்.</value>
+  </data>
+  <data name="ShopName" xml:space="preserve">
     <value>ஸ்ரீ கன்னிகாபரமேஸ்வரி சர்வீசஸ்</value>
   </data>
-  <data name="We are a well-established furniture and home appliance store in Thirukazhukundram since 1980. We offer a wide range of brand new furniture, home appliances, and utensils for marriages, festivals, and events." xml:space="preserve">
-    <value>நாங்கள் 1980 முதல் திருக்கழுகுன்றம் பகுதியில் நன்கு நிறுவப்பட்ட மரச்சாமான்கள் மற்றும் வீட்டு உபயோகப் மற்றும் பாத்திரங்களை கடையாக செயல்பட்டு வருகின்றோம். திருமணங்கள், திருவிழாக்கள் மற்றும் சுப நிகழ்வுகளுக்கான புதிய மரச்சாமான்கள், வீட்டு உபயோகப் பொருட்கள் மற்றும் பாத்திரங்களை நாங்கள் வழங்குகிறோம்.</value>
+  <data name="Tamil" xml:space="preserve">
+    <value>தமிழ்</value>
   </data>
 </root>
