@@ -24,8 +24,8 @@ namespace skps_services.ViewModels
         private string city;
         private string state;
         private string pincode;
-        private string service;
-        private string selectedService;
+        private int service;
+        private int selectedService;
         //private const double ShopLatitude = 12.60471248626709; // Replace with actual shop latitude        
         private const double ShopLatitude = 13.043585387863738; // Replace with actual Home latitude
         //private const double ShopLongitude = 80.05631256103516; // Replace with actual shop longitude
@@ -68,6 +68,7 @@ namespace skps_services.ViewModels
             {
                 address = value;
                 RaisePropertyChanged("Address");
+                RaisePropertyChanged(nameof(IsFormValid));
             }
         }        
         public string City
@@ -94,24 +95,30 @@ namespace skps_services.ViewModels
                 RaisePropertyChanged("Pincode");
             }
         }        
-        public string Service
+        public int Service
         {
-            get => service; set
+            get => service;
+            set
             {
                 service = value;
                 RaisePropertyChanged("Service");
             }
         }
-        public string SelectedService
+        private int _selectedService;
+        public int SelectedService
         {
-            get { return selectedService; }
+            get => _selectedService;
             set
             {
-                selectedService = value;
+                _selectedService = value;
                 RaisePropertyChanged(nameof(SelectedService));
+                RaisePropertyChanged(nameof(IsFormValid)); // Trigger validation
             }
         }
 
+        public bool IsFormValid => 
+                           !string.IsNullOrEmpty(Address) &&
+                           SelectedService>=0;
 
         public Command BookNow { get; }
 
@@ -120,7 +127,7 @@ namespace skps_services.ViewModels
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(v));
         }
 
-        public async Task PostDataAsync(string name, string email, string mobileNumber, string address, string city, string state, string pincode, string selectedService)
+        public async Task PostDataAsync(string name, string email, string mobileNumber, string address, string city, string state, string pincode, int selectedService)
         {
             await _firebaseClient.Child("BookingDetails").PostAsync(new BookingDetails
             {
@@ -149,6 +156,12 @@ namespace skps_services.ViewModels
 
         private async void BookNowTappedAsync(object obj)
         {
+            if (!IsFormValid)
+            {
+                UserDialogs.Instance.HideLoading();
+                UserDialogs.Instance.Toast("Please enter all fields", TimeSpan.FromSeconds(2));
+                return;
+            }
             try
             {
                 // Get the user's location

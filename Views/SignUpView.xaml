@@ -48,7 +48,7 @@
                     </Frame>
 
 
-                    <Button CornerRadius="0" HeightRequest="60" Command="{Binding SignUp}" Text="Sign Up" FontSize="20" FontAttributes="Bold" WidthRequest="300"/>
+                    <Button CornerRadius="0" HeightRequest="60" Command="{Binding SignUp}"  IsEnabled="{Binding IsFormValid}"  Text="Sign Up" FontSize="20" FontAttributes="Bold" WidthRequest="300"/>
 
                     <HorizontalStackLayout HorizontalOptions="Center">
                         <Label FontAttributes="Bold" TextColor="{x:StaticResource Gray300}" Text="Already have an account?" VerticalTextAlignment="Center" />

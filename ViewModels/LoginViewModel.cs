@@ -13,6 +13,7 @@ using FirebaseAuthLinkFirebase = Firebase.Auth.FirebaseAuthLink;
 using FirebaseAuthLinkCustom = skps_services.Models.FirebaseAuthLink;
 using static skps_services.Constants.AppConstant;
 using Newtonsoft.Json.Linq;
+using Android.Locations;
 
 namespace skps_services.ViewModels
 {
@@ -45,9 +46,14 @@ namespace skps_services.ViewModels
             {
                 password = value;
                 RaisePropertyChanged(nameof(Password));
+                RaisePropertyChanged(nameof(IsFormValid)); // Trigger validation
+
             }
         }
 
+        public bool IsFormValid =>
+                          !string.IsNullOrEmpty(Email) &&
+                          !string.IsNullOrEmpty(Password);
         public LoginViewModel(INavigation navigation)
         {
             _navigation = navigation;
@@ -73,9 +79,16 @@ namespace skps_services.ViewModels
 
         private async Task LoginBtnTappedAsync()
         {
-            var authProvider = new FirebaseAuthProvider(new FirebaseConfig(WebApiKey));
+            if (!IsFormValid)
+            {
+                UserDialogs.Instance.HideLoading();
+                UserDialogs.Instance.Toast("Please enter all fields", TimeSpan.FromSeconds(2));
+                return;
+            }
             try
             {
+                var authProvider = new FirebaseAuthProvider(new FirebaseConfig(WebApiKey));
+
                 UserDialogs.Instance.ShowLoading("Logging In");
                 var auth = await authProvider.SignInWithEmailAndPasswordAsync(Email, Password);
                 var content = await auth.GetFreshAuthAsync();
@@ -139,7 +152,7 @@ namespace skps_services.ViewModels
                 else
                 {
                     Console.WriteLine("userDetails is null");
-                    await App.Current.MainPage.DisplayAlert("Error", "User details could not be retrieved.", "OK");
+                    await App.Current.MainPage.DisplayAlert("Details not found", "User details could not be retrieved.", "OK");
                 }
 
 
@@ -152,7 +165,8 @@ namespace skps_services.ViewModels
             catch (Exception ex)
             {
                 Console.WriteLine($"Login failed: {ex.Message}");
-                await App.Current.MainPage.DisplayAlert("Invalid", "Incorrect Login Credentials. Please try again!!", "OK");
+                UserDialogs.Instance.Toast("Invalid username or password", TimeSpan.FromSeconds(2));
+
             }
             finally
             {

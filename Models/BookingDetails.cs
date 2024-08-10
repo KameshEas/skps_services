@@ -15,7 +15,7 @@ namespace skps_services.Models
         public string City { get; set; }
         public string State { get; set; }
         public string Pincode { get; set; }
-        public string Service { get; set; }
-        public string SelectedService { get; set; }
+        public int Service { get; set; }
+        public int SelectedService { get; set; }
     }
 }

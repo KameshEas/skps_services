@@ -54,6 +54,7 @@ namespace skps_services.ViewModels
             {
                 displayName = value;
                 RaisePropertyChanged(nameof(DisplayName));
+                RaisePropertyChanged(nameof(IsFormValid)); // Trigger validation
                 UpdateNameFromDisplayName();
             }
         }
@@ -65,6 +66,8 @@ namespace skps_services.ViewModels
             {
                 email = value;
                 RaisePropertyChanged(nameof(Email));
+                RaisePropertyChanged(nameof(IsFormValid)); // Trigger validation
+
             }
         }
 
@@ -75,6 +78,7 @@ namespace skps_services.ViewModels
             {
                 password = value;
                 RaisePropertyChanged(nameof(Password));
+                RaisePropertyChanged(nameof(IsFormValid)); // Trigger validation
             }
         }
 
@@ -85,9 +89,16 @@ namespace skps_services.ViewModels
             {
                 mobileNumber = value;
                 RaisePropertyChanged(nameof(MobileNumber));
+                RaisePropertyChanged(nameof(IsFormValid)); // Trigger validation
+
             }
         }
 
+        public bool IsFormValid =>
+                  !string.IsNullOrEmpty(DisplayName) &&
+                  !string.IsNullOrEmpty(Email) &&
+                  !string.IsNullOrEmpty(MobileNumber) &&
+                  !string.IsNullOrEmpty(Password);
         public Command SignUp { get; }
 
         private void RaisePropertyChanged(string propertyName)
@@ -140,6 +151,12 @@ namespace skps_services.ViewModels
 
         private async Task SignUpUserTappedAsync()
         {
+            if (!IsFormValid)
+            {
+                UserDialogs.Instance.HideLoading();
+                UserDialogs.Instance.Toast("Please enter all fields", TimeSpan.FromSeconds(2));
+                return;
+            }
             try
             {
                 UserDialogs.Instance.ShowLoading("Signing Up...");
@@ -169,14 +186,14 @@ namespace skps_services.ViewModels
                 {
                     UserDialogs.Instance.HideLoading();
                     // Other authentication errors
-                    await App.Current.MainPage.DisplayAlert("Alert", "Error: " + ex.Reason.ToString(), "OK");
+                    Console.WriteLine("Alert", "Error: " + ex.Reason.ToString(), "OK");
                 }
             }
             catch (Exception ex)
             {
                 UserDialogs.Instance.HideLoading();
                 // Other non-authentication errors
-                await App.Current.MainPage.DisplayAlert("Alert", "Error: " + ex.Message, "OK");
+                Console.WriteLine("Alert", "Error: " + ex.Message, "OK");
             }
         }
     }
