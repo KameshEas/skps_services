@@ -81,10 +81,19 @@ namespace skps_services.ViewModels
                 var content = await auth.GetFreshAuthAsync();
 
                 var serializedContent = JsonConvert.SerializeObject(content);
-                await SecureStorage.SetAsync(AppConstant.FirebaseTokenKey, serializedContent);
-
                 var expiryDate = DateTime.UtcNow.AddSeconds(content.ExpiresIn);
-                await SecureStorage.SetAsync(AppConstant.TokenExpiryKey, expiryDate.ToString("o"));
+
+                // Check and save the token
+                if (!string.IsNullOrEmpty(AppConstant.FirebaseTokenKey) && !string.IsNullOrEmpty(serializedContent))
+                {
+                    await SecureStorage.SetAsync(AppConstant.FirebaseTokenKey, serializedContent);
+                }
+
+                // Check and save the expiry date
+                if (!string.IsNullOrEmpty(AppConstant.TokenExpiryKey) && !string.IsNullOrEmpty(expiryDate.ToString("o")))
+                {
+                    await SecureStorage.SetAsync(AppConstant.TokenExpiryKey, expiryDate.ToString("o"));
+                }
 
                 var jsonObject = JObject.Parse(serializedContent);
                 string idToken = jsonObject["idToken"]?.ToString();
@@ -105,7 +114,34 @@ namespace skps_services.ViewModels
                     .Child(content.User.LocalId)
                     .OnceSingleAsync<UserNew>();
 
-                StoreUserDetails(userDetails);
+                if (userDetails != null)
+                {
+                    Console.WriteLine($"User Details Retrieved: {JsonConvert.SerializeObject(userDetails)}");
+                    userDetails.PhotoUrl = userDetails.PhotoUrl ?? "profile_1.png";
+                    if (userDetails.PhotoUrl == null)
+                    {
+                        Console.WriteLine("PhotoUrl is null");
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("User details are null");
+                }
+
+                if (userDetails != null)
+                {
+                    var serializedUserDetails = JsonConvert.SerializeObject(userDetails);
+                    AppConstant.UserDetailsKey = serializedUserDetails; 
+
+                    await SecureStorage.SetAsync(AppConstant.UserDetailsKey, serializedUserDetails);
+                    StoreUserDetails(userDetails);
+                }
+                else
+                {
+                    Console.WriteLine("userDetails is null");
+                    await App.Current.MainPage.DisplayAlert("Error", "User details could not be retrieved.", "OK");
+                }
+
 
                 AppConstant.UserName = userDetails.DisplayName;
                 AppConstant.UserEmail = userDetails.Email;
@@ -197,7 +233,7 @@ namespace skps_services.ViewModels
             UserStore.DisplayName = user.DisplayName;
             UserStore.Email = user.Email;
             UserStore.EmailVerified = user.EmailVerified;
-            UserStore.PhotoUrl = user.PhotoUrl;
+            UserStore.PhotoUrl = user.PhotoUrl ?? "profile_1.png";
         }
 
         private void RaisePropertyChanged(string propertyName)

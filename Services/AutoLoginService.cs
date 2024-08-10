@@ -2,6 +2,7 @@
 using Firebase.Auth;
 using Firebase.Database;
 using Firebase.Database.Query;
+using Newtonsoft.Json;
 using skps_services.Constants;
 using skps_services.Models;
 using skps_services.Views;
@@ -26,6 +27,8 @@ namespace skps_services.Services
                 // Retrieve the token and expiry from SecureStorage
                 var storedToken = await SecureStorage.GetAsync(AppConstant.IdToken);
                 var storedExpiry = await SecureStorage.GetAsync(AppConstant.Expiry);
+                var storedUserDetails = await SecureStorage.GetAsync(AppConstant.UserDetailsKey);
+
 
                 if (!string.IsNullOrEmpty(storedToken) && !string.IsNullOrEmpty(storedExpiry))
                 {
@@ -36,29 +39,19 @@ namespace skps_services.Services
                         AppConstant.IdToken = storedToken;
                         AppConstant.Expiry = expiryDate.ToString("o");
 
-                        // Optionally, fetch user details again if needed
-                        var userClient = new FirebaseClient(AppConstant.FirebaseUri);
-                        var authProvider = new FirebaseAuthProvider(new FirebaseConfig(AppConstant.WebApiKey));
-
-                        // Check for token validity
+                        // Verify the ID token or proceed with other logic
                         try
                         {
-                            var auth = await authProvider.SignInWithCustomTokenAsync(storedToken);
-                            var userDetails = await userClient
-                                .Child("User")
-                                .Child(auth.User.LocalId)
-                                .OnceSingleAsync<UserNew>();
-
+                            var userDetails = JsonConvert.DeserializeObject<UserNew>(storedUserDetails);
                             StoreUserDetails(userDetails);
-
-                            // Navigate to the home page
-                            await _navigation.PushModalAsync(new HomeView());
-                            return;
                         }
-                        catch (Exception authEx)
+                        catch (Exception ex)
                         {
-                            Console.WriteLine($"SignInWithCustomTokenAsync failed: {authEx.Message}");
+                            Console.WriteLine($"Failed to fetch user details: {ex.Message}");
                         }
+
+                        await _navigation.PushModalAsync(new HomeView());
+                        return;
                     }
                 }
 
@@ -68,6 +61,7 @@ namespace skps_services.Services
             catch (Exception ex)
             {
                 Console.WriteLine($"Auto-login failed: {ex.Message}");
+                Task.Delay(2000);
                 UserDialogs.Instance.Toast("Auto-login failed. Please log in manually.", TimeSpan.FromSeconds(2));
                 await _navigation.PushModalAsync(new LoginView());
             }
@@ -75,7 +69,6 @@ namespace skps_services.Services
 
         private void StoreUserDetails(UserNew userDetails)
         {
-            // Store the user details in your app constants or wherever you need them
             AppConstant.UserName = userDetails.DisplayName;
             AppConstant.UserEmail = userDetails.Email;
             AppConstant.UserMobileNumber = userDetails.MobileNumber;

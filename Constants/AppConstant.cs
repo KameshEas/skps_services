@@ -14,12 +14,14 @@ namespace skps_services.Constants
         public const string ShopNumber = "+91 7708589128";
         public const string FirebaseTokenKey = "FreshFirebaseToken";
         public const string TokenExpiryKey = "TokenExpiry";
+        public static string UserDetailsKey { get; set; } = "";
         public static string UserMobileNumber { get; set; } = "";
         public static string UserName { get; set; }= "";
         public static string UserEmail { get; set; }= "";
         public static string IdToken { get; set; }= "";
         public static string Expiry { get; set; } = "Expiry";
         public static string SelectedLanguage { get; set; } = "en";
+
         public static readonly string[] Services =
         {
             "Mixie",
@@ -42,7 +44,7 @@ namespace skps_services.Constants
         public static string DisplayName { get; set; }
         public static string Email { get; set; }
         public static bool EmailVerified { get; set; }
-        public static string PhotoUrl { get; set; }
+        public static string PhotoUrl { get; set; } = "profile_1.png";
         public static string MobileNumber { get; set; }
     }
 }

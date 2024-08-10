@@ -33,7 +33,7 @@ namespace skps_services.ViewModels
                 await authProvider.SendPasswordResetEmailAsync(email);
                 UserDialogs.Instance.HideLoading();
                 Console.WriteLine("Password reset email sent successfully.");
-                UserDialogs.Instance.Alert("Password Reset", "Reset Link Sent to your Mail", "Ok");
+                UserDialogs.Instance.Alert("Reset Link Sent to your Mail", "Password Reset", "Ok");
             }
             catch (FirebaseAuthException e)
             {

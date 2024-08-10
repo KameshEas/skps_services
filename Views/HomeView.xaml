@@ -31,7 +31,7 @@
                 <Grid Grid.Row="1" Padding="10,0,6,0" RowDefinitions="Auto,Auto" RowSpacing="10" Margin="0,10">
                     <Label Grid.Row="0" Text="{x:Static lang:Strings.PrefferedLanguage}" TextColor="{x:StaticResource FlashWhite}" HorizontalOptions="FillAndExpand" VerticalOptions="Center" FontSize="16" FontAttributes="Bold" />
                     <Frame Grid.Row="1" BackgroundColor="{x:StaticResource FlashWhite}" Padding="5,0" WidthRequest="250" HorizontalOptions="Start">
-                        <Picker x:Name="LanguagePicker" SelectedIndex="0" SelectedIndexChanged="OnLanguageChanged"  VerticalOptions="Center" BackgroundColor="{x:StaticResource FlashWhite}" TextColor="{x:StaticResource FlashWhite}" TitleColor="{x:StaticResource Primary}" >
+                        <Picker x:Name="LanguagePicker" Title="{x:Static lang:Strings.SelectLang}" SelectedIndex="0" SelectedIndexChanged="OnLanguageChanged"  VerticalOptions="Center" BackgroundColor="{x:StaticResource FlashWhite}" TextColor="{x:StaticResource FlashWhite}" TitleColor="{x:StaticResource Primary}" >
                             <Picker.Items>
                                 <x:String>English</x:String>
                                 <x:String>Tamil</x:String>
