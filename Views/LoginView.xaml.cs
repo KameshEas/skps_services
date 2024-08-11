@@ -20,6 +20,7 @@ public partial class LoginView : ContentPage
 
     private async void SignUp_Clicked(object sender, EventArgs e)
     {
+        
         await Navigation.PushModalAsync(new SignUpView());
     }
 }

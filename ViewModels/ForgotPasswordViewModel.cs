@@ -25,7 +25,11 @@ namespace skps_services.ViewModels
                 Console.WriteLine("Email cannot be null or empty.");
                 return;
             }
-
+            if (Connectivity.NetworkAccess != NetworkAccess.Internet)
+            {
+                await App.Current.MainPage.DisplayAlert("No Internet", "Internet connection is required to sign up.", "OK");
+                return;
+            }
             try
             {
                 var authProvider = new FirebaseAuthProvider(new FirebaseConfig(AppConstant.WebApiKey));

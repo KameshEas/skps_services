@@ -22,6 +22,11 @@ namespace skps_services.Services
 
         public async Task AutoLoginAsync()
         {
+            if (Connectivity.NetworkAccess != NetworkAccess.Internet)
+            {
+                await App.Current.MainPage.DisplayAlert("No Internet", "Internet connection is required to auto login.", "OK");
+                return;
+            }
             try
             {
                 // Retrieve the token and expiry from SecureStorage

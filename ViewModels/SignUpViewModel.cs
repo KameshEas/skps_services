@@ -157,6 +157,11 @@ namespace skps_services.ViewModels
                 UserDialogs.Instance.Toast("Please enter all fields", TimeSpan.FromSeconds(2));
                 return;
             }
+            if (Connectivity.NetworkAccess != NetworkAccess.Internet)
+            {
+                await App.Current.MainPage.DisplayAlert("No Internet", "Internet connection is required to sign up.", "OK");
+                return;
+            }
             try
             {
                 UserDialogs.Instance.ShowLoading("Signing Up...");

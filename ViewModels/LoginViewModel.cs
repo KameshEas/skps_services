@@ -82,7 +82,12 @@ namespace skps_services.ViewModels
             if (!IsFormValid)
             {
                 UserDialogs.Instance.HideLoading();
-                UserDialogs.Instance.Toast("Please enter all fields", TimeSpan.FromSeconds(2));
+                UserDialogs.Instance.Alert("Invalid","Please enter all fields", "Ok");
+                return;
+            }
+            if (Connectivity.NetworkAccess != NetworkAccess.Internet)
+            {
+                await App.Current.MainPage.DisplayAlert("No Internet", "Internet connection is required to login.", "OK");
                 return;
             }
             try
@@ -162,77 +167,15 @@ namespace skps_services.ViewModels
 
                 await _navigation.PushModalAsync(new HomeView());
             }
-            catch (Exception ex)
+            catch(Exception ex)
             {
-                Console.WriteLine($"Login failed: {ex.Message}");
-                UserDialogs.Instance.Toast("Invalid username or password", TimeSpan.FromSeconds(2));
-
+                await App.Current.MainPage.DisplayAlert("Invalid Credentials", "Invalid username or password", "OK");
             }
             finally
             {
                 UserDialogs.Instance.HideLoading();
             }
         }
-
-        //private async Task LoginBtnTappedAsync()
-        //{
-        //    var authProvider = new FirebaseAuthProvider(new FirebaseConfig(WebApiKey));
-        //    try
-        //    {
-        //        UserDialogs.Instance.ShowLoading("Logging In");
-        //        var auth = await authProvider.SignInWithEmailAndPasswordAsync(Email, Password);
-        //        var content = await auth.GetFreshAuthAsync();
-
-        //        var serializedContent = JsonConvert.SerializeObject(content);
-        //        var jsonObject = JObject.Parse(serializedContent);
-        //        await SecureStorage.SetAsync(AppConstant.FirebaseTokenKey, serializedContent);
-
-        //        var expiryDate1 = DateTime.UtcNow.AddSeconds(content.ExpiresIn);
-        //        await SecureStorage.SetAsync(AppConstant.TokenExpiryKey, expiryDate1.ToString());
-
-        //        string idToken = jsonObject["idToken"]?.ToString();
-        //        string expiry = jsonObject["expiresIn"]?.ToString();
-        //        var createdTime = DateTime.Parse(jsonObject["Created"]?.ToString());
-        //        var expiresIn = int.Parse(jsonObject["expiresIn"]?.ToString());
-        //        var expiryDate = createdTime.AddSeconds(expiresIn);
-        //        string expiryDateString = expiryDate.ToString("o");
-
-        //        // Store these in your app's constants or secure storage
-        //        AppConstant.IdToken = idToken;
-        //        AppConstant.Expiry = expiryDate;
-
-        //        await SecureStorage.SetAsync(AppConstant.IdToken, idToken);
-        //        await SecureStorage.SetAsync(AppConstant.Expiry, expiryDateString);
-
-
-        //        Console.WriteLine("Token stored: " + idToken);
-        //        Console.WriteLine("Token expiry: " + expiryDate);
-
-        //        var userClient = new FirebaseClient(AppConstant.FirebaseUri);
-        //        var userDetails = await userClient
-        //            .Child("User")
-        //            .Child(content.User.LocalId)
-        //            .OnceSingleAsync<UserNew>();
-
-        //        StoreUserDetails(userDetails);
-
-        //        AppConstant.UserName = userDetails.DisplayName;
-        //        AppConstant.UserEmail = userDetails.Email;
-        //        AppConstant.UserMobileNumber = userDetails.MobileNumber;
-
-        //        await _navigation.PushModalAsync(new HomeView());
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        Console.WriteLine($"Login failed: {ex.Message}");
-        //        await App.Current.MainPage.DisplayAlert("Invalid", "Incorrect Login Credentials. Please try again!!", "OK");
-        //    }
-        //    finally
-        //    {
-        //        UserDialogs.Instance.HideLoading();
-        //    }
-        //}
-
         private async Task RegisterBtnTappedAsync()
         {
             await _navigation.PushAsync(new SignUpView());

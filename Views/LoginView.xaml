@@ -36,7 +36,7 @@
                     </Frame>
 
 
-                    <Button CornerRadius="0" HeightRequest="60" Command="{Binding LoginBtn}"  IsEnabled="{Binding IsFormValid}"  Text="Login" FontSize="20" FontAttributes="Bold" WidthRequest="300"/>
+                    <Button x:Name="LoginBtn" CornerRadius="0" HeightRequest="60" Command="{Binding LoginBtn}"  IsEnabled="{Binding IsFormValid}"  Text="Login" FontSize="20" FontAttributes="Bold" WidthRequest="300"/>
 
                     <HorizontalStackLayout HorizontalOptions="Center">
                         <Label  FontAttributes="Bold" TextColor="{x:StaticResource Gray300}" Text="Don't have account?" VerticalTextAlignment="Center" />
