@@ -1,5 +1,6 @@
 using skps_services.Constants;
 using skps_services.ViewModels;
+using System.Globalization;
 
 namespace skps_services.Views;
 
@@ -10,6 +11,22 @@ public partial class BookNowView : ContentPage
 	{
 		InitializeComponent();
         BindingContext = new BookNowViewModel(Navigation);
+
+        var selectedLanguage = AppConstant.SelectedLanguage;
+        CultureInfo culture;
+
+        if (selectedLanguage == "Tamil")
+        {
+            culture = new CultureInfo("ta");
+        }
+        else
+        {
+            culture = new CultureInfo("en");
+        }
+
+        CultureInfo.DefaultThreadCurrentCulture = culture;
+        CultureInfo.DefaultThreadCurrentUICulture = culture;
+
 
     }
 

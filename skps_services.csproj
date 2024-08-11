@@ -63,6 +63,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Remove="Resources\Fonts\Vanavil-Regular.otf" />
 	  <None Remove="Resources\Images\about_us.png" />
 	  <None Remove="Resources\Images\about_us.svg" />
 	  <None Remove="Resources\Images\backarrow.png" />

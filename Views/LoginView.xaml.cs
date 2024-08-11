@@ -23,4 +23,10 @@ public partial class LoginView : ContentPage
         
         await Navigation.PushModalAsync(new SignUpView());
     }
+
+    private async void ResetNow_Clicked(object sender, EventArgs e)
+    {
+        await Navigation.PushModalAsync(new ForgotPasswordView());
+
+    }
 }

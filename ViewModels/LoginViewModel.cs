@@ -26,6 +26,7 @@ namespace skps_services.ViewModels
 
         public event PropertyChangedEventHandler PropertyChanged;
 
+        public Command ResetNowBtn { get; }
         public Command SignUpBtn { get; }
         public Command LoginBtn { get; }
 
@@ -57,6 +58,7 @@ namespace skps_services.ViewModels
         public LoginViewModel(INavigation navigation)
         {
             _navigation = navigation;
+            ResetNowBtn = new Command(async () => await ResetNowBtnTappedAsync());
             SignUpBtn = new Command(async () => await RegisterBtnTappedAsync());
             LoginBtn = new Command(async () => await LoginBtnTappedAsync());
         }
@@ -179,6 +181,10 @@ namespace skps_services.ViewModels
         private async Task RegisterBtnTappedAsync()
         {
             await _navigation.PushAsync(new SignUpView());
+        }
+        private async Task ResetNowBtnTappedAsync()
+        {
+            await _navigation.PushAsync(new ForgotPasswordView());
         }
 
         private void StoreUserDetails(UserNew user)

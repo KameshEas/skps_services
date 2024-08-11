@@ -1,5 +1,6 @@
 using Java.Security;
 using skps_services.Constants;
+using System.Globalization;
 using System.Windows.Input;
 
 namespace skps_services.Views;
@@ -10,6 +11,21 @@ public partial class ProfileView : ContentPage
     public ProfileView()
 	{
 		InitializeComponent();
+
+        var selectedLanguage = AppConstant.SelectedLanguage;
+        CultureInfo culture;
+
+        if (selectedLanguage == "Tamil")
+        {
+            culture = new CultureInfo("ta");
+        }
+        else
+        {
+            culture = new CultureInfo("en");
+        }
+
+        CultureInfo.DefaultThreadCurrentCulture = culture;
+        CultureInfo.DefaultThreadCurrentUICulture = culture;
     }
 
     public ProfileView(string uid) : this()
@@ -34,7 +50,7 @@ public partial class ProfileView : ContentPage
 
     private async void Password_Tapped(object sender, TappedEventArgs e)
     {
-        await Navigation.PushModalAsync(new ForgotPasswordView());
+        await Navigation.PushModalAsync(new PasswordView());
     }
 
     private async void Services_Tapped(object sender, TappedEventArgs e)

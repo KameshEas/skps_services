@@ -43,6 +43,11 @@
                         <Button  Text="Sign Up" Command="{Binding SignUpBtn}"
                            FontAttributes="Bold" BackgroundColor="Transparent" Clicked="SignUp_Clicked" TextColor="{x:StaticResource PrimaryDarkText}" />
                     </HorizontalStackLayout>
+                    <HorizontalStackLayout HorizontalOptions="Center">
+                        <Label  FontAttributes="Bold" TextColor="{x:StaticResource Gray300}" Text="Forgot Password ?" VerticalTextAlignment="Center" />
+                        <Button  Text="Reset Now" Command="{Binding ResetNowBtn}"
+                           FontAttributes="Bold" BackgroundColor="Transparent" Clicked="ResetNow_Clicked" TextColor="{x:StaticResource PrimaryDarkText}" />
+                    </HorizontalStackLayout>
                 </VerticalStackLayout>
             </Border>
         </Grid>

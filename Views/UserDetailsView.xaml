@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              xmlns:vm="clr-namespace:skps_services.ViewModels"
+             xmlns:lang="clr-namespace:skps_services.Platforms.Android.Resources.Languages"
              xmlns:constants="clr-namespace:skps_services.Constants"
              x:Class="skps_services.Views.UserDetailsView"
              BackgroundColor="{x:StaticResource FlashWhite}">
@@ -17,15 +18,15 @@
                     <TapGestureRecognizer Tapped="Back_Tapped"/>
                 </Image.GestureRecognizers>
             </Image>
-            <Label Grid.Row="0" Text="User Details" FontSize="22" HorizontalOptions="Center" TextColor="{x:StaticResource Primary}" Padding="0,15,0,0" FontAttributes="Bold"/>
+            <Label Grid.Row="0" Text="{x:Static lang:Strings.UserDetails}" FontSize="22" HorizontalOptions="Center" TextColor="{x:StaticResource Primary}" Padding="0,15,0,0" FontAttributes="Bold"/>
         </Grid>
         <Image Grid.Row="1" Source="userpage" WidthRequest="280" Margin="0,40,0,60"/>
         <Grid Grid.Row="2" RowDefinitions="*,*,*" ColumnDefinitions="*,Auto" RowSpacing="15">
-            <Label Grid.Row="0" Grid.Column="0" Text="Name: " FontAttributes="Bold" FontSize="20" TextColor="{x:StaticResource Primary}" />
+            <Label Grid.Row="0" Grid.Column="0" Text="{x:Static lang:Strings.Name} " FontAttributes="Bold" FontSize="20" TextColor="{x:StaticResource Primary}" />
             <Label Grid.Row="0" Grid.Column="1" Text="{Binding Source={x:Static constants:AppConstant.UserName}}" FontSize="20" TextColor="{x:StaticResource PrimaryDark}" />
-            <Label Grid.Row="1" Grid.Column="0" Text="Email: " FontAttributes="Bold" FontSize="20" TextColor="{x:StaticResource Primary}" />
+            <Label Grid.Row="1" Grid.Column="0" Text="{x:Static lang:Strings.Email} " FontAttributes="Bold" FontSize="20" TextColor="{x:StaticResource Primary}" />
             <Label Grid.Row="1" Grid.Column="1" Text="{Binding Source={x:Static constants:AppConstant.UserEmail}}" FontSize="20" TextColor="{x:StaticResource PrimaryDark}" />
-            <Label Grid.Row="2" Grid.Column="0" Text="Mobile: " FontAttributes="Bold"  FontSize="20" TextColor="{x:StaticResource Primary}" />
+            <Label Grid.Row="2" Grid.Column="0" Text="{x:Static lang:Strings.Mobile} " FontAttributes="Bold"  FontSize="20" TextColor="{x:StaticResource Primary}" />
             <Label Grid.Row="2" Grid.Column="1" Text="{Binding Source={x:Static constants:AppConstant.UserMobileNumber}}" FontSize="20" TextColor="{x:StaticResource PrimaryDark}" />
         </Grid>
     </Grid>

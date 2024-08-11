@@ -39,7 +39,7 @@
                         </Picker>
                     </Frame>
                 </Grid>
-                <Button Grid.Row="2" VerticalOptions="End" Margin="15,20" BackgroundColor="White" Text="{x:Static lang:Strings.BookService}" FontAttributes="Bold" FontSize="14" TextColor="{x:StaticResource PrimaryDarkText}" HeightRequest="50" Clicked="BookService_Clicked" />
+                <Button Grid.Row="2" VerticalOptions="End" Margin="15,20" BackgroundColor="White" Text="{x:Static lang:Strings.BookServiceNow}" FontAttributes="Bold" FontSize="14" TextColor="{x:StaticResource PrimaryDarkText}" HeightRequest="50" Clicked="BookService_Clicked" />
             </Grid>
         </Frame>
     </Grid>

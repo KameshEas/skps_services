@@ -117,14 +117,32 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AboutService" xml:space="preserve">
+    <value>ஸ்ரீ கண்ணிகாபரமேஸ்வரி சர்வீசஸ்(SKPS) இல், நாங்கள் நமது நிபுணத்துவம் வாய்ந்த தொழில்நுட்பக் குழுவின் மூலம் உயர்தர தீர்வுகளை வழங்குவதில் பெருமை கொள்கிறோம். ஒவ்வொரு சேவையும் பல ஆண்டுகளாக அனுபவம் மற்றும் சிறப்பு அறிவு கொண்ட நிபுணர்களால் கவனமாகச் செய்யப்படுகிறது. இது ஒரு சாதாரண பராமரிப்பு பணியாக இருந்தாலும், ஒரு சிக்கலான தொழில்நுட்ப பிரச்சனையாக இருந்தாலும், எங்கள் திறமையான தொழில்நுட்பவியலாளர்கள் ஒவ்வொரு பணியையும் துல்லியமாகவும் கவனமாகவும் நிறைவேற்றுகிறார்கள். மிக உயர்ந்த தரத் தரங்களுக்கு இணையான நம்பகமான மற்றும் திறம்பட சேவைகளை வழங்க எங்களை நம்புங்கள்.</value>
+  </data>
+  <data name="AboutService_1" xml:space="preserve">
+    <value>சேவையைப் பற்றி</value>
+  </data>
+  <data name="BookNow" xml:space="preserve">
+    <value>முன்பதிவு செய்ய</value>
+  </data>
   <data name="BookService" xml:space="preserve">
+    <value>சேவையை முன்பதிவு செய்ய</value>
+  </data>
+  <data name="BookServiceNow" xml:space="preserve">
     <value>சேவையை பதிவு செய்ய</value>
   </data>
   <data name="Call us" xml:space="preserve">
     <value>எங்களை அழைக்க</value>
   </data>
-  <data name="Contact Us" xml:space="preserve">
+  <data name="ChangePassword" xml:space="preserve">
+    <value>கடவுச்சொல்லை மாற்ற</value>
+  </data>
+  <data name="ContactUs" xml:space="preserve">
     <value>தொடர்புகொள்ள</value>
+  </data>
+  <data name="Email" xml:space="preserve">
+    <value>மின்னஞ்சல்</value>
   </data>
   <data name="Email us" xml:space="preserve">
     <value>மின்னஞ்சல் அனுப்ப</value>
@@ -132,11 +150,35 @@
   <data name="English" xml:space="preserve">
     <value>ஆங்கிலம்</value>
   </data>
+  <data name="LogOut" xml:space="preserve">
+    <value>வெளியேற</value>
+  </data>
+  <data name="Mobile" xml:space="preserve">
+    <value>மொபைல்</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>பெயர்</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>கடவுச்சொல்</value>
+  </data>
+  <data name="PasswordReset" xml:space="preserve">
+    <value>கடவுச்சொல் மறு அமைப்பு மின்னஞ்சலை அனுப்பு</value>
+  </data>
+  <data name="PasswordText" xml:space="preserve">
+    <value>நீங்கள் உள்ளீட்டில் குறிப்பிட்ட மின்னஞ்சல் முகவரி ஒரு கணக்குடன் இணைக்கப்பட்டிருந்தால், உங்கள் கடவுச்சொல்லை மாற்றுவதற்கான இணைப்பு விரைவில் உங்கள் மின்னஞ்சலுக்கு அனுப்பப்படும். தயவுசெய்து உங்கள் மின்னஞ்சல் பெட்டியைச் சரிபார்த்து, மின்னஞ்சலில் கொடுக்கப்பட்டுள்ள வழிமுறைகளைப் பின்பற்றவும்.</value>
+  </data>
   <data name="PrefferedLanguage" xml:space="preserve">
     <value>விருப்பமான மொழி</value>
   </data>
+  <data name="Profile" xml:space="preserve">
+    <value>சுயவிவரம்</value>
+  </data>
   <data name="SelectLang" xml:space="preserve">
     <value>மொழியைத் தேர்ந்தெடுக்கவும்</value>
+  </data>
+  <data name="Services" xml:space="preserve">
+    <value>சேவைகள்</value>
   </data>
   <data name="ShopAbout" xml:space="preserve">
     <value>நாங்கள் 1980 முதல் திருக்கழுகுன்றம் பகுதியில் நன்கு நிறுவப்பட்ட மரச்சாமான்கள் மற்றும் வீட்டு உபயோகப் மற்றும் பாத்திரங்களை கடையாக செயல்பட்டு வருகின்றோம். திருமணங்கள், திருவிழாக்கள் மற்றும் சுப நிகழ்வுகளுக்கான புதிய மரச்சாமான்கள், வீட்டு உபயோகப் பொருட்கள் மற்றும் பாத்திரங்களை நாங்கள் வழங்குகிறோம்.</value>
@@ -146,5 +188,8 @@
   </data>
   <data name="Tamil" xml:space="preserve">
     <value>தமிழ்</value>
+  </data>
+  <data name="UserDetails" xml:space="preserve">
+    <value>பயனர் விவரங்கள்</value>
   </data>
 </root>

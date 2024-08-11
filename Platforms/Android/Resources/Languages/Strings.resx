@@ -120,14 +120,29 @@
   <data name="AboutService" xml:space="preserve">
     <value>At SKPS Services, we pride ourselves on delivering top-notch solutions through our team of expert technicians. Each service is meticulously handled by professionals who bring years of experience and specialized knowledge to the table. Whether it’s a routine maintenance task or a complex technical issue, our skilled technicians ensure that every job is completed with precision and care. Trust us to provide reliable and efficient services that meet the highest standards of quality and excellence.</value>
   </data>
+  <data name="AboutService_1" xml:space="preserve">
+    <value>About Service</value>
+  </data>
+  <data name="BookNow" xml:space="preserve">
+    <value>Book Now</value>
+  </data>
   <data name="BookService" xml:space="preserve">
+    <value>Book Service</value>
+  </data>
+  <data name="BookServiceNow" xml:space="preserve">
     <value>Book Your Service Now</value>
   </data>
   <data name="CallUs" xml:space="preserve">
     <value>Call Us</value>
   </data>
+  <data name="ChangePassword" xml:space="preserve">
+    <value>Change Password</value>
+  </data>
   <data name="ContactUs" xml:space="preserve">
     <value>Contact Us</value>
+  </data>
+  <data name="Email" xml:space="preserve">
+    <value>Email</value>
   </data>
   <data name="EmailUs" xml:space="preserve">
     <value>Email Us</value>
@@ -135,11 +150,38 @@
   <data name="English" xml:space="preserve">
     <value>English</value>
   </data>
+  <data name="LogOut" xml:space="preserve">
+    <value>Log Out</value>
+  </data>
+  <data name="Mobile" xml:space="preserve">
+    <value>Mobile</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="PasswordReset" xml:space="preserve">
+    <value>Send Password Reset Email</value>
+  </data>
+  <data name="PasswordText" xml:space="preserve">
+    <value>If the email address you entered is associated with an account, you'll receive a link to reset your password shortly. Please check your inbox and follow the instructions in the email.</value>
+  </data>
   <data name="PrefferedLanguage" xml:space="preserve">
     <value>Select your Preffered Language</value>
   </data>
+  <data name="Profile" xml:space="preserve">
+    <value>Profile</value>
+  </data>
   <data name="SelectLang" xml:space="preserve">
     <value>Select Language</value>
+  </data>
+  <data name="SelectService" xml:space="preserve">
+    <value>Select your service</value>
+  </data>
+  <data name="Services" xml:space="preserve">
+    <value>Services</value>
   </data>
   <data name="ShopAbout" xml:space="preserve">
     <value>We are a well-established furniture and home appliance store in Thirukazhukundram since 1980. We offer a wide range of brand new furniture, home appliances, and utensils for marriages, festivals, and events.</value>
@@ -149,5 +191,8 @@
   </data>
   <data name="Tamil" xml:space="preserve">
     <value>Tamil</value>
+  </data>
+  <data name="UserDetails" xml:space="preserve">
+    <value>User Details</value>
   </data>
 </root>

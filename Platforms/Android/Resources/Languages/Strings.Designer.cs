@@ -70,11 +70,38 @@ namespace skps_services.Platforms.Android.Resources.Languages {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Book Your Service Now.
+        ///   Looks up a localized string similar to About Service.
+        /// </summary>
+        internal static string AboutService_1 {
+            get {
+                return ResourceManager.GetString("AboutService_1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Book Now.
+        /// </summary>
+        internal static string BookNow {
+            get {
+                return ResourceManager.GetString("BookNow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Book Service.
         /// </summary>
         internal static string BookService {
             get {
                 return ResourceManager.GetString("BookService", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Book Your Service Now.
+        /// </summary>
+        internal static string BookServiceNow {
+            get {
+                return ResourceManager.GetString("BookServiceNow", resourceCulture);
             }
         }
         
@@ -88,11 +115,29 @@ namespace skps_services.Platforms.Android.Resources.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Change Password.
+        /// </summary>
+        internal static string ChangePassword {
+            get {
+                return ResourceManager.GetString("ChangePassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Contact Us.
         /// </summary>
         internal static string ContactUs {
             get {
                 return ResourceManager.GetString("ContactUs", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Email.
+        /// </summary>
+        internal static string Email {
+            get {
+                return ResourceManager.GetString("Email", resourceCulture);
             }
         }
         
@@ -115,6 +160,60 @@ namespace skps_services.Platforms.Android.Resources.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Log Out.
+        /// </summary>
+        internal static string LogOut {
+            get {
+                return ResourceManager.GetString("LogOut", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mobile.
+        /// </summary>
+        internal static string Mobile {
+            get {
+                return ResourceManager.GetString("Mobile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name.
+        /// </summary>
+        internal static string Name {
+            get {
+                return ResourceManager.GetString("Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Password.
+        /// </summary>
+        internal static string Password {
+            get {
+                return ResourceManager.GetString("Password", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Send Password Reset Email.
+        /// </summary>
+        internal static string PasswordReset {
+            get {
+                return ResourceManager.GetString("PasswordReset", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to If the email address you entered is associated with an account, you&apos;ll receive a link to reset your password shortly. Please check your inbox and follow the instructions in the email..
+        /// </summary>
+        internal static string PasswordText {
+            get {
+                return ResourceManager.GetString("PasswordText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select your Preffered Language.
         /// </summary>
         internal static string PrefferedLanguage {
@@ -124,11 +223,38 @@ namespace skps_services.Platforms.Android.Resources.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Profile.
+        /// </summary>
+        internal static string Profile {
+            get {
+                return ResourceManager.GetString("Profile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select Language.
         /// </summary>
         internal static string SelectLang {
             get {
                 return ResourceManager.GetString("SelectLang", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select your service.
+        /// </summary>
+        internal static string SelectService {
+            get {
+                return ResourceManager.GetString("SelectService", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Services.
+        /// </summary>
+        internal static string Services {
+            get {
+                return ResourceManager.GetString("Services", resourceCulture);
             }
         }
         
@@ -156,6 +282,15 @@ namespace skps_services.Platforms.Android.Resources.Languages {
         internal static string Tamil {
             get {
                 return ResourceManager.GetString("Tamil", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User Details.
+        /// </summary>
+        internal static string UserDetails {
+            get {
+                return ResourceManager.GetString("UserDetails", resourceCulture);
             }
         }
     }

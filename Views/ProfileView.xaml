@@ -2,6 +2,7 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:lang="clr-namespace:skps_services.Platforms.Android.Resources.Languages"
              x:Class="skps_services.Views.ProfileView"
              BackgroundColor="{x:StaticResource FlashWhite}">
 
@@ -15,7 +16,7 @@
                     <TapGestureRecognizer Tapped="Back_Tapped"/>
                 </Image.GestureRecognizers>
             </Image>
-            <Label Grid.Row="0" Text="Profile" FontSize="22" HorizontalOptions="Center" TextColor="{x:StaticResource Primary}" Padding="0,15,0,0" FontAttributes="Bold"/>
+            <Label Grid.Row="0" Text="{x:Static lang:Strings.Profile}" FontSize="22" HorizontalOptions="Center" TextColor="{x:StaticResource Primary}" Padding="0,15,0,0" FontAttributes="Bold"/>
         </Grid>
         <Image Grid.Row="1" Source="profile" WidthRequest="280" Margin="0,40,0,60"/>
         <Grid Grid.Row="2" RowDefinitions="*,*" ColumnDefinitions="*,*" Padding="20,10" ColumnSpacing="15" RowSpacing="20">
@@ -24,7 +25,7 @@
                     <TapGestureRecognizer Tapped="UserDetails_Tapped" />
                 </Frame.GestureRecognizers>
                 <Grid RowDefinitions="*,*" RowSpacing="5">
-                    <Label Grid.Row="1" Text="User Details" FontSize="18" HorizontalOptions="Center" TextColor="{x:StaticResource FlashWhite}"/>
+                    <Label Grid.Row="1" Text="{x:Static lang:Strings.UserDetails}" FontSize="18" HorizontalOptions="Center" TextColor="{x:StaticResource FlashWhite}"/>
                     <Image Grid.Row="0" Source="about.png" HeightRequest="25" WidthRequest="25" HorizontalOptions="Center">
                         <Image.Behaviors>
                             <toolkit:IconTintColorBehavior TintColor="{x:StaticResource FlashWhite}" />
@@ -37,7 +38,7 @@
                     <TapGestureRecognizer Tapped="Services_Tapped" />
                 </Frame.GestureRecognizers>
                 <Grid RowDefinitions="*,*" RowSpacing="5">
-                    <Label Grid.Row="1" Text="Services" FontSize="18" HorizontalOptions="Center" TextColor="{x:StaticResource FlashWhite}"/>
+                    <Label Grid.Row="1" Text="{x:Static lang:Strings.Services}" FontSize="18" HorizontalOptions="Center" TextColor="{x:StaticResource FlashWhite}"/>
                     <Image Grid.Row="0" Source="about.png" HeightRequest="25" WidthRequest="25" HorizontalOptions="Center">
                         <Image.Behaviors>
                             <toolkit:IconTintColorBehavior TintColor="{x:StaticResource FlashWhite}" />
@@ -51,7 +52,7 @@
                     <TapGestureRecognizer Tapped="Password_Tapped" />
                 </Frame.GestureRecognizers>
                 <Grid RowDefinitions="*,*" RowSpacing="5">
-                    <Label Grid.Row="1" Text="Password" FontSize="18" HorizontalOptions="Center" TextColor="{x:StaticResource FlashWhite}"/>
+                    <Label Grid.Row="1" Text="{x:Static lang:Strings.Password}" FontSize="18" HorizontalOptions="Center" TextColor="{x:StaticResource FlashWhite}"/>
                     <Image Grid.Row="0" Source="password.png" HeightRequest="25" WidthRequest="25" HorizontalOptions="Center">
                         <Image.Behaviors>
                             <toolkit:IconTintColorBehavior TintColor="{x:StaticResource FlashWhite}" />
@@ -64,7 +65,7 @@
                     <TapGestureRecognizer Tapped="ContactUs_Tapped" />
                 </Frame.GestureRecognizers>
                 <Grid RowDefinitions="*,*" RowSpacing="5">
-                    <Label Grid.Row="1" Text="Contact Us" FontSize="18" HorizontalOptions="Center" TextColor="{x:StaticResource FlashWhite}"/>
+                    <Label Grid.Row="1" Text="{x:Static lang:Strings.ContactUs}" FontSize="18" HorizontalOptions="Center" TextColor="{x:StaticResource FlashWhite}"/>
                     <Image Grid.Row="0" Source="chat.png" HeightRequest="25" WidthRequest="25" HorizontalOptions="Center">
                         <Image.Behaviors>
                             <toolkit:IconTintColorBehavior TintColor="{x:StaticResource FlashWhite}" />
@@ -75,6 +76,6 @@
 
 
         </Grid>
-        <Button Grid.Row="3" Margin="15" Text="Log Out" Clicked="Logout_Clicked" TextColor="{x:StaticResource FlashWhite}" VerticalOptions="EndAndExpand" FontAttributes="Bold" FontSize="20" HeightRequest="60" CornerRadius="10" ImageSource="logout.png" />
+        <Button Grid.Row="3" Margin="15" Text="{x:Static lang:Strings.LogOut}" Clicked="Logout_Clicked" TextColor="{x:StaticResource FlashWhite}" VerticalOptions="EndAndExpand" FontAttributes="Bold" FontSize="20" HeightRequest="60" CornerRadius="10" ImageSource="logout.png" />
     </Grid>
 </ContentPage>

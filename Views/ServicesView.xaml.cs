@@ -1,4 +1,5 @@
 using skps_services.Constants;
+using System.Globalization;
 using System.Windows.Input;
 
 namespace skps_services.Views;
@@ -10,7 +11,22 @@ public partial class ServicesView : ContentPage
     public ServicesView()
 	{
 		InitializeComponent();
-	}
+
+        var selectedLanguage = AppConstant.SelectedLanguage;
+        CultureInfo culture;
+
+        if (selectedLanguage == "Tamil")
+        {
+            culture = new CultureInfo("ta");
+        }
+        else
+        {
+            culture = new CultureInfo("en");
+        }
+
+        CultureInfo.DefaultThreadCurrentCulture = culture;
+        CultureInfo.DefaultThreadCurrentUICulture = culture;
+    }
 
     private async void Profile_tapped(object sender, TappedEventArgs e)
     {

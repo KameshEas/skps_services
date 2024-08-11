@@ -11,28 +11,30 @@
         <local:ServicesViewModel />
     </ContentPage.BindingContext>
 
-    <Grid RowDefinitions="Auto,Auto,Auto" Margin="14,2" Padding="14,10" RowSpacing="15">
-        <!-- Header -->
-        <Grid Grid.Row="0">
-            <Image Source="backarrow.png" WidthRequest="20" HeightRequest="20" HorizontalOptions="Start">
-                <Image.GestureRecognizers>
-                    <TapGestureRecognizer Tapped="Back_Tapped"/>
-                </Image.GestureRecognizers>
-            </Image>
-            <Grid>
-                <Label Text="About Service" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" FontSize="21" FontAttributes="Bold" TextColor="{x:StaticResource Primary}" Padding="10,20"/>
-                <Frame IsVisible="False" HorizontalOptions="End" CornerRadius="10" BorderColor="Transparent" BackgroundColor="Transparent" WidthRequest="35" HeightRequest="35" Margin="0" Padding="0">
-                    <Frame.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="Profile_tapped"/>
-                    </Frame.GestureRecognizers>
-                    <Image Source="profile_1.png" Aspect="AspectFill"/>
-                </Frame>
+    <ScrollView VerticalOptions="FillAndExpand" Margin="14,2">
+        <Grid RowDefinitions="Auto,Auto,Auto"  Padding="14,10" RowSpacing="15">
+            <!-- Header -->
+            <Grid Grid.Row="0">
+                <Image Source="backarrow.png" WidthRequest="20" HeightRequest="20" HorizontalOptions="Start">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="Back_Tapped"/>
+                    </Image.GestureRecognizers>
+                </Image>
+                <Grid>
+                    <Label Text="{x:Static lang:Strings.AboutService_1}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" FontSize="21" FontAttributes="Bold" TextColor="{x:StaticResource Primary}" Padding="10,20"/>
+                    <Frame IsVisible="False" HorizontalOptions="End" CornerRadius="10" BorderColor="Transparent" BackgroundColor="Transparent" WidthRequest="35" HeightRequest="35" Margin="0" Padding="0">
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="Profile_tapped"/>
+                        </Frame.GestureRecognizers>
+                        <Image Source="profile_1.png" Aspect="AspectFill"/>
+                    </Frame>
+                </Grid>
+            </Grid>
+            <Image  Grid.Row="1" Source="service.svg" Aspect="AspectFill" HeightRequest="300"/>
+            <Grid Grid.Row="2" RowDefinitions="*,Auto" RowSpacing="40">
+                <Label Grid.Row="0"  Text="{x:Static lang:Strings.AboutService}" FontSize="16" CharacterSpacing="1" LineHeight="1" LineBreakMode="WordWrap" TextColor="{x:StaticResource PrimaryDark}"/>
+                <Button Grid.Row="1" Margin="20,0" VerticalOptions="EndAndExpand" Text="{x:Static lang:Strings.BookServiceNow}" BackgroundColor="{x:StaticResource Primary}" Clicked="BookNow_Clicked" FontAttributes="Bold" FontSize="14" TextColor="{x:StaticResource FlashWhite}" HeightRequest="40"/>
             </Grid>
         </Grid>
-        <Image  Grid.Row="1" Source="service.svg" Aspect="AspectFill" HeightRequest="300"/>
-        <Grid Grid.Row="2" RowDefinitions="*,Auto" RowSpacing="120">
-            <Label Grid.Row="0"  Text="{x:Static lang:Strings.AboutService}" FontSize="16" CharacterSpacing="1" LineHeight="1" LineBreakMode="WordWrap" TextColor="{x:StaticResource PrimaryDark}"/>
-            <Button Grid.Row="1" Margin="20,0" VerticalOptions="EndAndExpand" Text="Book your Service Now" BackgroundColor="{x:StaticResource Primary}" Clicked="BookNow_Clicked" FontAttributes="Bold" FontSize="14" TextColor="{x:StaticResource FlashWhite}" HeightRequest="40"/>
-        </Grid>
-    </Grid>
+    </ScrollView>
 </ContentPage>

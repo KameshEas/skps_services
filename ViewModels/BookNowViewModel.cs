@@ -189,6 +189,8 @@ namespace skps_services.ViewModels
                 if (distanceToShop > MaxDistanceKm)
                 {
                     await App.Current.MainPage.DisplayAlert("Booking Failed", "Service is only available within 10 km of the shop.", "OK");
+                    await _navigation.PopAsync();
+
                     return;
                 }
 
@@ -217,6 +219,8 @@ namespace skps_services.ViewModels
 
 
                 await App.Current.MainPage.DisplayAlert("Booking successful", "Please Check the mail for Booking Confirmation", "OK");
+                await _navigation.PopAsync();
+
             }
             catch (FirebaseAuthException ex)
             {
